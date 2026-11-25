@@ -292,6 +292,25 @@ a{color:inherit}a:hover{color:inherit}
 .mbar .btn{min-height:48px;padding:0 20px}
 .mbar .ic{padding:0;width:52px}
 
+.q-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.q-row .q-h{margin:0}
+.cal-btn{flex:0 0 auto;width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid #161616;background:#fff;color:#161616;cursor:pointer}
+.cal-btn.on{background:#161616;color:#F5F5F3}
+.cal{border:1.5px solid #D4D4D0;background:#fff;padding:12px}
+.cal-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.cal-m{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-style:italic;font-weight:800;font-size:22px;text-transform:uppercase}
+.cal-nav{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:0;background:#F0F0ED;color:#161616;cursor:pointer}
+.cal-nav[disabled]{opacity:.3;cursor:not-allowed}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal-w{text-align:center;font-size:11px;font-weight:600;color:#5A5A58;padding:4px 0;text-transform:uppercase;letter-spacing:.04em}
+.cal-d{min-height:44px;border:0;background:#F0F0ED;color:#161616;font:inherit;font-size:15px;font-weight:600;cursor:pointer;font-variant-numeric:tabular-nums}
+.cal-d:hover{background:#E1E1DD}
+.cal-d.today{box-shadow:inset 0 0 0 1.5px #161616}
+.cal-d.on{background:#161616;color:#F5F5F3}
+.cal-d.blank{background:transparent;cursor:default}
+.cal-d[disabled]:not(.blank){background:transparent;color:#B4B4B0;cursor:not-allowed;text-decoration:line-through}
+.picked{margin-top:10px;font-size:14px;font-weight:600}
+
 /* motion */
 @keyframes ph-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @keyframes ph-zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
@@ -328,7 +347,7 @@ a{color:inherit}a:hover{color:inherit}
 .is-th .tab{font-size:15px}
 .is-th .q-h{font-size:21px}
 .is-th .eyebrow{font-size:14px}
-.is-th .tr .tg,.is-th .swipe,.is-th .map-t b,.is-th .sp-switch button,.is-th .kid-e{font-family:Kanit,sans-serif;font-style:normal;font-weight:500;letter-spacing:0;text-transform:none}
+.is-th .cal-m,.is-th .tr .tg,.is-th .swipe,.is-th .map-t b,.is-th .sp-switch button,.is-th .kid-e{font-family:Kanit,sans-serif;font-style:normal;font-weight:500;letter-spacing:0;text-transform:none}
 .is-th .facts b{font-size:19px}
 
 /* desktop */
@@ -465,7 +484,7 @@ a{color:inherit}a:hover{color:inherit}
 <p class="lede">{{t.k10}}</p>
 <div class="cta-row">
 <a class="btn btn-red" href="#book">{{t.k6}}</a>
-<a class="btn btn-ghost" href="#book" onClick="{{openWa}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.4 8.4 0 1 1 21 11.5z"/></svg>{{t.k7}}</a>
+<a class="btn btn-ghost" href="#book" onClick="{{openWa}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg>{{t.k7}}</a>
 </div>
 <ul class="facts">
 <li><b>550 THB</b><span>{{t.k11}}</span></li>
@@ -693,10 +712,22 @@ a{color:inherit}a:hover{color:inherit}
 </sc-if>
 
 <sc-if value="{{step2}}" hint-placeholder-val="{{ false }}">
-<h3 class="q-h">{{t.k112}}</h3>
+<div class="q-row"><h3 class="q-h">{{t.k112}}</h3><button type="button" class="cal-btn {{calBtnCls}}" aria-expanded="{{calOpen}}" aria-label="{{calBtnLabel}}" onClick="{{toggleCal}}"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h2M14 14h2M8 17.5h2"/></svg></button></div>
+<sc-if value="{{calClosed}}" hint-placeholder-val="{{ true }}">
 <div class="days">
 <sc-for list="{{days}}" as="d" hint-placeholder-count="7"><button type="button" class="{{d.cls}}" aria-pressed="{{d.on}}" onClick="{{d.pick}}"><span>{{d.dow}}</span><b>{{d.day}}</b><span>{{d.mon}}</span></button></sc-for>
 </div>
+</sc-if>
+<sc-if value="{{calOpen}}" hint-placeholder-val="{{ false }}">
+<div class="cal">
+<div class="cal-hd"><button type="button" class="cal-nav" aria-label="{{calPrevLabel}}" disabled="{{calPrevDis}}" onClick="{{calPrev}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><b class="cal-m">{{calTitle}}</b><button type="button" class="cal-nav" aria-label="{{calNextLabel}}" disabled="{{calNextDis}}" onClick="{{calNext}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+<div class="cal-grid">
+<sc-for list="{{calDow}}" as="w" hint-placeholder-count="7"><span class="cal-w">{{w}}</span></sc-for>
+<sc-for list="{{calCells}}" as="c" hint-placeholder-count="35"><button type="button" class="cal-d {{c.cls}}" disabled="{{c.dis}}" aria-pressed="{{c.on}}" aria-label="{{c.label}}" onClick="{{c.pick}}">{{c.n}}</button></sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{hasDay}}" hint-placeholder-val="{{ false }}"><p class="picked">{{pickedText}}</p></sc-if>
 <h3 class="q-h gap">{{t.k113}}</h3>
 <sc-if value="{{noDay}}" hint-placeholder-val="{{ false }}"><p class="small" style="color:#5A5A58">{{t.k114}}</p></sc-if>
 <div class="slots">
@@ -738,11 +769,12 @@ a{color:inherit}a:hover{color:inherit}
 </sc-if>
 
 <div class="wa">
-<button type="button" class="btn btn-line" onClick="{{toggleWa}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.4 8.4 0 1 1 21 11.5z"/></svg>{{t.k7}}</button>
+<button type="button" class="btn btn-line" onClick="{{toggleWa}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg>{{t.k7}}</button>
 <sc-if value="{{waOpen}}" hint-placeholder-val="{{ false }}">
 <p class="small" style="color:#5A5A58">{{t.k129}}</p>
 <div class="wa-msg">{{waMsg}}</div>
-<p class="small" style="color:#5A5A58"><span class="todo">[WhatsApp number of the gym]</span> Until then: LINE @phetsiam.</p>
+<a class="btn btn-dark" href="{{lineUrl}}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg>{{t.k130}}</a>
+<p class="small" style="color:#5A5A58">LINE ID: @phetsiam</p>
 </sc-if>
 </div>
 </div>
@@ -752,20 +784,20 @@ a{color:inherit}a:hover{color:inherit}
 <section class="sec light" id="location">
 <div class="wrap">
 <div class="head" data-rv>
-<p class="eyebrow">{{t.k130}}</p>
-<h2 class="h h2">{{t.k131}}</h2>
+<p class="eyebrow">{{t.k132}}</p>
+<h2 class="h h2">{{t.k133}}</h2>
 </div>
 <div class="loc-grid" data-rv>
 <a class="map" href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener" aria-label="Open Phetsiam Muay Thai Gym in Google Maps"><span class="map-pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="map-t"><b>Phetsiam Muay Thai Gym</b><span>Sathu Pradit 58, Yan Nawa, Bangkok</span></span><span class="btn btn-dark">{{t.k98}}</span></a>
 <div style="display:flex;flex-direction:column;gap:18px">
 <p class="addr">Phetsiam Muay Thai Gym<br>127 Sathupradit Soi 58 Yak 13<br>Bang Pong Pang, Yan Nawa, Bangkok<br><span class="small">Rama 3 / Sathorn area</span></p>
-<p class="small m-hide">{{t.k132}} <span class="todo">[Opening hours]</span></p>
+<p class="small m-hide">{{t.k134}} <span class="todo">[Opening hours]</span></p>
 <div class="ct">
-<a href="tel:0994526419"><span>{{t.k133}}</span>099 452 6419</a>
-<a href="tel:0994525464"><span>{{t.k133}}</span>099 452 5464</a>
-<div><span>LINE</span>@phetsiam</div>
+<a href="tel:0994526419"><span>{{t.k135}}</span>099 452 6419</a>
+<a href="tel:0994525464"><span>{{t.k135}}</span>099 452 5464</a>
+<a href="https://line.me/R/ti/p/%40phetsiam" target="_blank" rel="noopener"><span>LINE</span>@phetsiam</a>
 <a href="https://www.instagram.com/phetsiam.muaythai/"><span>Instagram</span>phetsiam.muaythai</a>
-<div><span>WhatsApp</span>[Number]</div>
+<a href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener"><span>{{t.k131}}</span>Google Maps</a>
 <div><span>Facebook and TikTok</span>phetsiam.muaythai</div>
 </div>
 <a class="btn btn-dark loc-cta" href="#book" style="align-self:flex-start">{{t.k6}}</a>
@@ -780,8 +812,8 @@ a{color:inherit}a:hover{color:inherit}
 </footer>
 
 <div class="mbar">
-<div class="mb-t"><b>550 THB</b><span>{{t.k134}}</span></div>
-<a class="btn btn-ghost ic" href="#book" onClick="{{openWa}}" aria-label="Book via WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.4 8.4 0 1 1 21 11.5z"/></svg></a>
+<div class="mb-t"><b>550 THB</b><span>{{t.k136}}</span></div>
+<a class="btn btn-ghost ic" href="#book" onClick="{{openWa}}" aria-label="Book via LINE"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg></a>
 <a class="btn btn-red" href="#book">{{t.k6}}</a>
 </div>
 
@@ -813,11 +845,11 @@ for (var i = 0; i < els.length; i++) this._io.observe(els[i]);
 }
 renderVals() {
 var self = this;
-var s = Object.assign({ sp: 'sched', lang: 'en', sched: 'all', price: 'group', step: 1, type: 'group', date: null, time: null, people: 1, name: '', phone: '', email: '', note: '', waOpen: false, anim: false }, this.state || {});
+var s = Object.assign({ calOpen: false, calMonth: 0, sp: 'sched', lang: 'en', sched: 'all', price: 'group', step: 1, type: 'group', date: null, time: null, people: 1, name: '', phone: '', email: '', note: '', waOpen: false, anim: false }, this.state || {});
 var set = function (o) { self.setState(o); };
 var L = s.lang === 'th';
 var tr = function (en, th) { return L ? th : en; };
-var T = {"k0": ["Numsurin", "หนุ่มสุรินทร์"], "k1": ["Training", "คลาสฝึก"], "k2": ["Schedule and prices", "ตารางและราคา"], "k3": ["Trainers", "ครูมวย"], "k4": ["The gym", "ยิมของเรา"], "k5": ["Find us", "แผนที่"], "k6": ["Book a session", "จองคลาส"], "k7": ["Book via WhatsApp", "จองผ่าน WhatsApp"], "k8": ["Real Muay Thai.", "มวยไทยแท้"], "k9": ["For everyone.", "สำหรับทุกคน"], "k10": ["A real fight gym in Bangkok. Thai fighters, first-timers and families train side by side, all under one roof.", "ยิมมวยไทยของจริงในกรุงเทพฯ นักมวยไทย มือใหม่ และครอบครัว ฝึกด้วยกันภายใต้หลังคาเดียวกัน"], "k11": ["Trial class, 75 min", "คลาสทดลอง 75 นาที"], "k12": ["First class, every day", "คลาสแรกของทุกวัน"], "k13": ["All levels", "ทุกระดับ"], "k14": ["Beginners welcome", "ยินดีต้อนรับมือใหม่"], "k15": ["Train with ONE Championship experience", "ฝึกกับประสบการณ์ระดับ ONE Championship"], "k16": ["Train where a ONE Championship contender trains.", "ฝึกในยิมเดียวกับนักมวยระดับ ONE Championship"], "k17": ["At Phetsiam", "ที่เพชรสยาม"], "k18": ["World title fight", "ชิงแชมป์โลก"], "k19": ["Also", "นอกจากนี้"], "k20": ["Co-founder and head coach", "ผู้ร่วมก่อตั้งและหัวหน้าโค้ช"], "k21": ["Contracted athlete, atomweight Muay Thai contender", "นักกีฬาในสังกัด ONE มวยไทยรุ่นอะตอมเวต"], "k22": ["Challenged for the inaugural ONE Atomweight Muay Thai World Title, November 2025", "ผู้ท้าชิงแชมป์โลกมวยไทยรุ่นอะตอมเวตของ ONE ครั้งแรก พฤศจิกายน 2025"], "k23": ["Muay Thai instructor at Bangkok Sports School. Specialist in Muay Thai and Western boxing.", "ครูสอนมวยไทยที่โรงเรียนกีฬากรุงเทพมหานคร เชี่ยวชาญมวยไทยและมวยสากล"], "k24": ["Train with Numsurin", "ฝึกกับหนุ่มสุรินทร์"], "k25": ["Private training from 3,000 THB, based on your level and goals. Also seminars, workshops and training camps.", "เทรนส่วนตัวเริ่มต้น 3,000 บาท ตามระดับและเป้าหมายของคุณ มีสัมมนา เวิร์กช็อป และแคมป์ฝึกด้วย"], "k26": ["New home since 30 June 2026", "บ้านใหม่ตั้งแต่ 30 มิถุนายน 2026"], "k27": ["Real gym.", "ยิมจริง"], "k28": ["Real people.", "คนจริง"], "k29": ["Phetsiam is a big, bright steel hall on Sathu Pradit 58 with a full-size ring in the middle. Fighters prepare for fight night here. Complete beginners throw their first kick here. Same mats, same coaches, same respect.", "เพชรสยามคือโรงยิมโครงเหล็กขนาดใหญ่ โปร่ง สว่าง ที่สาธุประดิษฐ์ 58 มีเวทีมวยขนาดมาตรฐานอยู่ตรงกลาง นักมวยเตรียมตัวขึ้นชกที่นี่ มือใหม่เตะครั้งแรกที่นี่ เบาะเดียวกัน ครูคนเดียวกัน ความเคารพเท่ากัน"], "k30": ["No ego and no shortcuts. We train for discipline, confidence and progress, and we call this place home.", "ไม่มีอีโก้ ไม่มีทางลัด เราฝึกเพื่อวินัย ความมั่นใจ และการพัฒนา และเราเรียกที่นี่ว่าบ้าน"], "k31": ["Training options", "รูปแบบการฝึก"], "k32": ["Real training. Your level.", "ฝึกจริง ในระดับของคุณ"], "k33": ["Group classes", "คลาสกลุ่ม"], "k34": ["Advanced", "ขั้นสูง"], "k35": ["Private training", "เทรนส่วนตัว"], "k36": ["70% sparring", "สปาร์ริ่ง 70%"], "k37": ["Open gym", "โอเพ่นยิม"], "k38": ["Special classes", "คลาสพิเศษ"], "k39": ["03 / 1-on-1 or duo", "03 / ตัวต่อตัวหรือคู่"], "k40": ["04 / Fighters", "04 / นักมวย"], "k41": ["05 / On your own", "05 / ฝึกเอง"], "k42": ["06 / Weekends", "06 / สุดสัปดาห์"], "k43": ["Muay Thai All Levels. From complete beginner up, six classes every weekday and four on weekend days.", "มวยไทยทุกระดับ ตั้งแต่มือใหม่ขึ้นไป วันธรรมดา 6 คลาส เสาร์อาทิตย์วันละ 4 คลาส"], "k44": ["For experienced practitioners and fighters. Technique sparring, clinch, bags and pads, and the Muay Femur Lab.", "สำหรับผู้มีประสบการณ์และนักมวย สปาร์ริ่งเทคนิค คลินช์ กระสอบและเป้า และ Muay Femur Lab"], "k45": ["Technique, padwork and sparring, strength and conditioning, fight preparation, weight management. A programme built around you.", "เทคนิค ล่อเป้าและสปาร์ริ่ง เสริมความแข็งแรง เตรียมขึ้นชก ควบคุมน้ำหนัก โปรแกรมที่ออกแบบเพื่อคุณ"], "k46": ["Fight-simulation sparring to build experience, skill and fight IQ.", "สปาร์ริ่งจำลองการชกจริง เพื่อเพิ่มประสบการณ์ ทักษะ และไหวพริบบนเวที"], "k47": ["Heavy bags, pads and ring, strength area, conditioning equipment and a recovery area.", "กระสอบทราย เป้าและเวที โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k48": ["Sparring Club, Athlete Mobility, Ice Bath and Recovery, and Community Time on the open mat.", "Sparring Club คลาสยืดเหยียดสำหรับนักกีฬา แช่น้ำเย็นและฟื้นฟูร่างกาย และ Community Time"], "k49": ["Trial class 550 THB", "คลาสทดลอง 550 บาท"], "k50": ["Daily, 08:00 and 16:00", "ทุกวัน 08:00 และ 16:00"], "k51": ["Trial PT 1,000 THB", "ทดลองเทรนส่วนตัว 1,000 บาท"], "k52": ["From 3,000 THB", "เริ่มต้น 3,000 บาท"], "k53": ["Daily, by appointment", "ทุกวัน นัดหมายล่วงหน้า"], "k54": ["Saturday and Sunday", "เสาร์ - อาทิตย์"], "k55": ["Class schedule", "ตารางคลาส"], "k56": ["Train every day.", "ฝึกได้ทุกวัน"], "k57": ["Monday to Friday", "จันทร์ - ศุกร์"], "k58": ["Muay Thai All Levels, Zone B. The general group class, from beginner to all levels.", "มวยไทยทุกระดับ โซน B คลาสกลุ่มทั่วไป ตั้งแต่มือใหม่ถึงทุกระดับ"], "k59": ["Day", "วัน"], "k60": ["Morning 08:00-09:30", "เช้า 08:00-09:30"], "k61": ["Afternoon 16:00-17:30", "บ่าย 16:00-17:30"], "k62": ["Muay Thai Advanced, Zone A. Technique and fight preparation for experienced practitioners and fighters. Muay Femur Lab: precision striking, footwork, fight IQ and modern combat movement.", "มวยไทยขั้นสูง โซน A เทคนิคและการเตรียมขึ้นชกสำหรับผู้มีประสบการณ์และนักมวย Muay Femur Lab: การออกอาวุธที่แม่นยำ ฟุตเวิร์ก ไหวพริบ และการเคลื่อนไหวแบบมวยสมัยใหม่"], "k63": ["Private sessions", "เทรนส่วนตัว"], "k64": ["Daily, 09:30-16:00 and 17:30-20:30", "ทุกวัน 09:30-16:00 และ 17:30-20:30"], "k65": ["Both by appointment. Book private sessions 24 hours ahead.", "ต้องนัดหมายล่วงหน้า เทรนส่วนตัวกรุณาจองล่วงหน้า 24 ชั่วโมง"], "k66": ["Saturday 18:00-19:00", "เสาร์ 18:00-19:00"], "k67": ["Sunday 09:00-10:00", "อาทิตย์ 09:00-10:00"], "k68": ["Sunday 10:00-11:00", "อาทิตย์ 10:00-11:00"], "k69": ["Saturday and Sunday 18:00-20:00", "เสาร์ - อาทิตย์ 18:00-20:00"], "k70": ["Sparring Club is technical sparring only: no ego, basic skills required. Community Time is open mat, drills and sharing.", "Sparring Club คือสปาร์ริ่งเชิงเทคนิคเท่านั้น ไม่มีอีโก้ ต้องมีพื้นฐาน Community Time คือเวลาซ้อมอิสระ ฝึกท่า และแลกเปลี่ยนกัน"], "k71": ["Prices in THB", "ราคา (บาท)"], "k72": ["Pick your pace.", "เลือกจังหวะของคุณ"], "k73": ["Before you train: our house rules", "ก่อนเริ่มฝึกกับเรา"], "k74": ["Private sessions: book at least 24 hours ahead, subject to coach availability.", "การจองคลาส: คลาส Private กรุณาจองล่วงหน้าอย่างน้อย 24 ชั่วโมง (ขึ้นอยู่กับตารางครูผู้สอน)"], "k75": ["Reschedule with at least 24 hours' notice. Late cancellations and no-shows count as a session.", "การเลื่อนหรือยกเลิก: แจ้งล่วงหน้าอย่างน้อย 24 ชั่วโมง หากแจ้งช้ากว่านี้หรือไม่มาตามนัด จะนับเป็น 1 Session"], "k76": ["Every course includes one emergency cancellation without losing a session.", "สิทธิ์ยกเลิกฉุกเฉิน: ทุกคอร์สยกเลิกหรือเลื่อนคลาสฉุกเฉินได้ 1 ครั้ง โดยไม่ถูกตัดสิทธิ์"], "k77": ["A course can be frozen once, for up to a third of its validity.", "พักคอร์สชั่วคราว: ขอพักคอร์สได้ 1 ครั้งต่อคอร์ส พักได้ไม่เกิน 1 ใน 3 ของอายุคอร์ส"], "k78": ["Late arrivals can always join, but the session ends at the original time.", "กรณีมาสาย: ยังเข้าเรียนได้ แต่คลาสจะสิ้นสุดตามเวลาที่จองไว้"], "k79": ["Validity extensions are possible in special circumstances. Just talk to us.", "อายุคอร์ส: หากมีเหตุจำเป็น ทีมงานยินดีพิจารณาเป็นรายกรณี"], "k80": ["The trainers, led by head coach Numsurin", "ทีมครูมวย นำโดยหัวหน้าโค้ชหนุ่มสุรินทร์"], "k81": ["Real experience. Real Muay Thai.", "ประสบการณ์จริง มวยไทยแท้"], "k82": ["The aggressive knee fighter.", "มวยเข่าสายบุก"], "k83": ["Experienced. Powerful. Ring smart.", "มากประสบการณ์ แข็งแรง อ่านเกมขาด"], "k84": ["The technical fighter. The proud dad.", "มวยฝีมือ พ่อลูกอ่อน"], "k85": ["Technical. Strong. Experienced.", "มวยฝีมือ แข็งแกร่ง มากประสบการณ์"], "k86": ["Good vibes. Sharp technique.", "อารมณ์ดี พลังบวก เทคนิคเฉียบคม"], "k87": ["International coach. Thai heart.", "โค้ชต่างชาติ หัวใจไทย"], "k88": ["Real Muay Thai for everyone.", "มวยไทยแท้สำหรับทุกคน"], "k89": ["All under one roof.", "ทุกอย่างภายใต้หลังคาเดียวกัน"], "k90": ["The place we call home", "ที่ที่เราเรียกว่าบ้าน"], "k91": ["Pad rounds", "ล่อเป้า"], "k92": ["Between rounds", "พักยก"], "k93": ["Light sparring. Real learning.", "สปาร์เบา ๆ เรียนรู้จริง"], "k94": ["Fight night: Krudam Fight 35", "คืนขึ้นชก: Krudam Fight 35"], "k95": ["Full-size ring. Primo gear. Heavy bags, strength area, conditioning equipment and a recovery area.", "เวทีมวยขนาดมาตรฐาน อุปกรณ์ Primo กระสอบทราย โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k96": ["Google reviews", "รีวิวจาก Google"], "k97": ["Read all reviews on Google", "อ่านรีวิวทั้งหมดบน Google"], "k98": ["Open in Google Maps", "เปิดใน Google Maps"], "k99": ["Swipe", "เลื่อนดู"], "k100": ["Numsurin, ONE Championship contender", "หนุ่มสุรินทร์ นักมวย ONE Championship"], "k101": ["Assistant coach", "ผู้ช่วยโค้ช"], "k102": ["Coach is watching.", "โค้ชดูนะ"], "k103": ["Better behave.", "ตั้งใจซ้อมด้วย!!"], "k104": ["Youngest on the team. Strictest too.", "อายุน้อยที่สุดในทีม และเข้มที่สุดด้วย"], "k105": ["Schedule", "ตาราง"], "k106": ["Prices", "ราคา"], "k107": ["Real people. Real words.", "คนจริง เสียงจริง"], "k108": ["Your first round starts here.", "ยกแรกของคุณเริ่มที่นี่"], "k109": ["Pick a training, a day and a time. We will confirm your spot. New to Muay Thai? Start with a trial class.", "เลือกรูปแบบการฝึก วัน และเวลา แล้วเราจะยืนยันที่ให้คุณ เพิ่งเริ่มมวยไทย? เริ่มจากคลาสทดลองได้เลย"], "k110": ["Choose your training", "เลือกรูปแบบการฝึก"], "k111": ["Next: date and time", "ถัดไป: วันและเวลา"], "k112": ["Pick a day", "เลือกวัน"], "k113": ["Pick a time", "เลือกเวลา"], "k114": ["Choose a day first to see the class times.", "เลือกวันก่อนเพื่อดูเวลาคลาส"], "k115": ["How many people?", "กี่คน"], "k116": ["Back", "ย้อนกลับ"], "k117": ["Next: your details", "ถัดไป: ข้อมูลของคุณ"], "k118": ["Your details", "ข้อมูลของคุณ"], "k119": ["Name", "ชื่อ"], "k120": ["Phone or WhatsApp number", "เบอร์โทรหรือ WhatsApp"], "k121": ["Email (optional)", "อีเมล (ไม่บังคับ)"], "k122": ["Anything we should know? (optional)", "มีอะไรอยากบอกเราไหม (ไม่บังคับ)"], "k123": ["Confirm booking", "ยืนยันการจอง"], "k124": ["Demo: nothing is sent or stored, and no payment is taken.", "เดโม: ไม่มีการส่งหรือบันทึกข้อมูล และไม่มีการชำระเงิน"], "k125": ["Your request is in. We will confirm your spot by phone or message. Bring water and a smile; we have the rest.", "เราได้รับคำขอของคุณแล้ว และจะยืนยันที่ให้ทางโทรศัพท์หรือข้อความ เตรียมน้ำดื่มกับรอยยิ้มมาก็พอ ที่เหลือเรามีให้"], "k126": ["Book another session", "จองอีกครั้ง"], "k127": ["How to find us", "ดูเส้นทาง"], "k128": ["This is a demo confirmation. Nothing was sent or stored.", "นี่คือหน้ายืนยันตัวอย่าง ไม่มีการส่งหรือบันทึกข้อมูล"], "k129": ["Opens WhatsApp with this message ready to send:", "เปิด WhatsApp พร้อมข้อความนี้:"], "k130": ["Location and contact", "ที่ตั้งและติดต่อ"], "k131": ["Find us on Sathu Pradit 58.", "เราอยู่ที่สาธุประดิษฐ์ 58"], "k132": ["First class daily at 07:00. Private sessions and open gym by appointment, 09:30-16:00 and 17:30-20:30.", "คลาสแรกทุกวัน 07:00 เทรนส่วนตัวและโอเพ่นยิมต้องนัดหมาย 09:30-16:00 และ 17:30-20:30"], "k133": ["Phone", "โทร"], "k134": ["Trial class", "คลาสทดลอง"]};
+var T = {"k0": ["Numsurin", "หนุ่มสุรินทร์"], "k1": ["Training", "คลาสฝึก"], "k2": ["Schedule and prices", "ตารางและราคา"], "k3": ["Trainers", "ครูมวย"], "k4": ["The gym", "ยิมของเรา"], "k5": ["Find us", "แผนที่"], "k6": ["Book a session", "จองคลาส"], "k7": ["Book via LINE", "จองผ่าน LINE"], "k8": ["Real Muay Thai.", "มวยไทยแท้"], "k9": ["For everyone.", "สำหรับทุกคน"], "k10": ["A real fight gym in Bangkok. Thai fighters, first-timers and families train side by side, all under one roof.", "ยิมมวยไทยของจริงในกรุงเทพฯ นักมวยไทย มือใหม่ และครอบครัว ฝึกด้วยกันภายใต้หลังคาเดียวกัน"], "k11": ["Trial class, 75 min", "คลาสทดลอง 75 นาที"], "k12": ["First class, every day", "คลาสแรกของทุกวัน"], "k13": ["All levels", "ทุกระดับ"], "k14": ["Beginners welcome", "ยินดีต้อนรับมือใหม่"], "k15": ["Train with ONE Championship experience", "ฝึกกับประสบการณ์ระดับ ONE Championship"], "k16": ["Train where a ONE Championship contender trains.", "ฝึกในยิมเดียวกับนักมวยระดับ ONE Championship"], "k17": ["At Phetsiam", "ที่เพชรสยาม"], "k18": ["World title fight", "ชิงแชมป์โลก"], "k19": ["Also", "นอกจากนี้"], "k20": ["Co-founder and head coach", "ผู้ร่วมก่อตั้งและหัวหน้าโค้ช"], "k21": ["Contracted athlete, atomweight Muay Thai contender", "นักกีฬาในสังกัด ONE มวยไทยรุ่นอะตอมเวต"], "k22": ["Challenged for the inaugural ONE Atomweight Muay Thai World Title, November 2025", "ผู้ท้าชิงแชมป์โลกมวยไทยรุ่นอะตอมเวตของ ONE ครั้งแรก พฤศจิกายน 2025"], "k23": ["Muay Thai instructor at Bangkok Sports School. Specialist in Muay Thai and Western boxing.", "ครูสอนมวยไทยที่โรงเรียนกีฬากรุงเทพมหานคร เชี่ยวชาญมวยไทยและมวยสากล"], "k24": ["Train with Numsurin", "ฝึกกับหนุ่มสุรินทร์"], "k25": ["Private training from 3,000 THB, based on your level and goals. Also seminars, workshops and training camps.", "เทรนส่วนตัวเริ่มต้น 3,000 บาท ตามระดับและเป้าหมายของคุณ มีสัมมนา เวิร์กช็อป และแคมป์ฝึกด้วย"], "k26": ["New home since 30 June 2026", "บ้านใหม่ตั้งแต่ 30 มิถุนายน 2026"], "k27": ["Real gym.", "ยิมจริง"], "k28": ["Real people.", "คนจริง"], "k29": ["Phetsiam is a big, bright steel hall on Sathu Pradit 58 with a full-size ring in the middle. Fighters prepare for fight night here. Complete beginners throw their first kick here. Same mats, same coaches, same respect.", "เพชรสยามคือโรงยิมโครงเหล็กขนาดใหญ่ โปร่ง สว่าง ที่สาธุประดิษฐ์ 58 มีเวทีมวยขนาดมาตรฐานอยู่ตรงกลาง นักมวยเตรียมตัวขึ้นชกที่นี่ มือใหม่เตะครั้งแรกที่นี่ เบาะเดียวกัน ครูคนเดียวกัน ความเคารพเท่ากัน"], "k30": ["No ego and no shortcuts. We train for discipline, confidence and progress, and we call this place home.", "ไม่มีอีโก้ ไม่มีทางลัด เราฝึกเพื่อวินัย ความมั่นใจ และการพัฒนา และเราเรียกที่นี่ว่าบ้าน"], "k31": ["Training options", "รูปแบบการฝึก"], "k32": ["Real training. Your level.", "ฝึกจริง ในระดับของคุณ"], "k33": ["Group classes", "คลาสกลุ่ม"], "k34": ["Advanced", "ขั้นสูง"], "k35": ["Private training", "เทรนส่วนตัว"], "k36": ["70% sparring", "สปาร์ริ่ง 70%"], "k37": ["Open gym", "โอเพ่นยิม"], "k38": ["Special classes", "คลาสพิเศษ"], "k39": ["03 / 1-on-1 or duo", "03 / ตัวต่อตัวหรือคู่"], "k40": ["04 / Fighters", "04 / นักมวย"], "k41": ["05 / On your own", "05 / ฝึกเอง"], "k42": ["06 / Weekends", "06 / สุดสัปดาห์"], "k43": ["Muay Thai All Levels. From complete beginner up, six classes every weekday and four on weekend days.", "มวยไทยทุกระดับ ตั้งแต่มือใหม่ขึ้นไป วันธรรมดา 6 คลาส เสาร์อาทิตย์วันละ 4 คลาส"], "k44": ["For experienced practitioners and fighters. Technique sparring, clinch, bags and pads, and the Muay Femur Lab.", "สำหรับผู้มีประสบการณ์และนักมวย สปาร์ริ่งเทคนิค คลินช์ กระสอบและเป้า และ Muay Femur Lab"], "k45": ["Technique, padwork and sparring, strength and conditioning, fight preparation, weight management. A programme built around you.", "เทคนิค ล่อเป้าและสปาร์ริ่ง เสริมความแข็งแรง เตรียมขึ้นชก ควบคุมน้ำหนัก โปรแกรมที่ออกแบบเพื่อคุณ"], "k46": ["Fight-simulation sparring to build experience, skill and fight IQ.", "สปาร์ริ่งจำลองการชกจริง เพื่อเพิ่มประสบการณ์ ทักษะ และไหวพริบบนเวที"], "k47": ["Heavy bags, pads and ring, strength area, conditioning equipment and a recovery area.", "กระสอบทราย เป้าและเวที โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k48": ["Sparring Club, Athlete Mobility, Ice Bath and Recovery, and Community Time on the open mat.", "Sparring Club คลาสยืดเหยียดสำหรับนักกีฬา แช่น้ำเย็นและฟื้นฟูร่างกาย และ Community Time"], "k49": ["Trial class 550 THB", "คลาสทดลอง 550 บาท"], "k50": ["Daily, 08:00 and 16:00", "ทุกวัน 08:00 และ 16:00"], "k51": ["Trial PT 1,000 THB", "ทดลองเทรนส่วนตัว 1,000 บาท"], "k52": ["From 3,000 THB", "เริ่มต้น 3,000 บาท"], "k53": ["Daily, by appointment", "ทุกวัน นัดหมายล่วงหน้า"], "k54": ["Saturday and Sunday", "เสาร์ - อาทิตย์"], "k55": ["Class schedule", "ตารางคลาส"], "k56": ["Train every day.", "ฝึกได้ทุกวัน"], "k57": ["Monday to Friday", "จันทร์ - ศุกร์"], "k58": ["Muay Thai All Levels, Zone B. The general group class, from beginner to all levels.", "มวยไทยทุกระดับ โซน B คลาสกลุ่มทั่วไป ตั้งแต่มือใหม่ถึงทุกระดับ"], "k59": ["Day", "วัน"], "k60": ["Morning 08:00-09:30", "เช้า 08:00-09:30"], "k61": ["Afternoon 16:00-17:30", "บ่าย 16:00-17:30"], "k62": ["Muay Thai Advanced, Zone A. Technique and fight preparation for experienced practitioners and fighters. Muay Femur Lab: precision striking, footwork, fight IQ and modern combat movement.", "มวยไทยขั้นสูง โซน A เทคนิคและการเตรียมขึ้นชกสำหรับผู้มีประสบการณ์และนักมวย Muay Femur Lab: การออกอาวุธที่แม่นยำ ฟุตเวิร์ก ไหวพริบ และการเคลื่อนไหวแบบมวยสมัยใหม่"], "k63": ["Private sessions", "เทรนส่วนตัว"], "k64": ["Daily, 09:30-16:00 and 17:30-20:30", "ทุกวัน 09:30-16:00 และ 17:30-20:30"], "k65": ["Both by appointment. Book private sessions 24 hours ahead.", "ต้องนัดหมายล่วงหน้า เทรนส่วนตัวกรุณาจองล่วงหน้า 24 ชั่วโมง"], "k66": ["Saturday 18:00-19:00", "เสาร์ 18:00-19:00"], "k67": ["Sunday 09:00-10:00", "อาทิตย์ 09:00-10:00"], "k68": ["Sunday 10:00-11:00", "อาทิตย์ 10:00-11:00"], "k69": ["Saturday and Sunday 18:00-20:00", "เสาร์ - อาทิตย์ 18:00-20:00"], "k70": ["Sparring Club is technical sparring only: no ego, basic skills required. Community Time is open mat, drills and sharing.", "Sparring Club คือสปาร์ริ่งเชิงเทคนิคเท่านั้น ไม่มีอีโก้ ต้องมีพื้นฐาน Community Time คือเวลาซ้อมอิสระ ฝึกท่า และแลกเปลี่ยนกัน"], "k71": ["Prices in THB", "ราคา (บาท)"], "k72": ["Pick your pace.", "เลือกจังหวะของคุณ"], "k73": ["Before you train: our house rules", "ก่อนเริ่มฝึกกับเรา"], "k74": ["Private sessions: book at least 24 hours ahead, subject to coach availability.", "การจองคลาส: คลาส Private กรุณาจองล่วงหน้าอย่างน้อย 24 ชั่วโมง (ขึ้นอยู่กับตารางครูผู้สอน)"], "k75": ["Reschedule with at least 24 hours' notice. Late cancellations and no-shows count as a session.", "การเลื่อนหรือยกเลิก: แจ้งล่วงหน้าอย่างน้อย 24 ชั่วโมง หากแจ้งช้ากว่านี้หรือไม่มาตามนัด จะนับเป็น 1 Session"], "k76": ["Every course includes one emergency cancellation without losing a session.", "สิทธิ์ยกเลิกฉุกเฉิน: ทุกคอร์สยกเลิกหรือเลื่อนคลาสฉุกเฉินได้ 1 ครั้ง โดยไม่ถูกตัดสิทธิ์"], "k77": ["A course can be frozen once, for up to a third of its validity.", "พักคอร์สชั่วคราว: ขอพักคอร์สได้ 1 ครั้งต่อคอร์ส พักได้ไม่เกิน 1 ใน 3 ของอายุคอร์ส"], "k78": ["Late arrivals can always join, but the session ends at the original time.", "กรณีมาสาย: ยังเข้าเรียนได้ แต่คลาสจะสิ้นสุดตามเวลาที่จองไว้"], "k79": ["Validity extensions are possible in special circumstances. Just talk to us.", "อายุคอร์ส: หากมีเหตุจำเป็น ทีมงานยินดีพิจารณาเป็นรายกรณี"], "k80": ["The trainers, led by head coach Numsurin", "ทีมครูมวย นำโดยหัวหน้าโค้ชหนุ่มสุรินทร์"], "k81": ["Real experience. Real Muay Thai.", "ประสบการณ์จริง มวยไทยแท้"], "k82": ["The aggressive knee fighter.", "มวยเข่าสายบุก"], "k83": ["Experienced. Powerful. Ring smart.", "มากประสบการณ์ แข็งแรง อ่านเกมขาด"], "k84": ["The technical fighter. The proud dad.", "มวยฝีมือ พ่อลูกอ่อน"], "k85": ["Technical. Strong. Experienced.", "มวยฝีมือ แข็งแกร่ง มากประสบการณ์"], "k86": ["Good vibes. Sharp technique.", "อารมณ์ดี พลังบวก เทคนิคเฉียบคม"], "k87": ["International coach. Thai heart.", "โค้ชต่างชาติ หัวใจไทย"], "k88": ["Real Muay Thai for everyone.", "มวยไทยแท้สำหรับทุกคน"], "k89": ["All under one roof.", "ทุกอย่างภายใต้หลังคาเดียวกัน"], "k90": ["The place we call home", "ที่ที่เราเรียกว่าบ้าน"], "k91": ["Pad rounds", "ล่อเป้า"], "k92": ["Between rounds", "พักยก"], "k93": ["Light sparring. Real learning.", "สปาร์เบา ๆ เรียนรู้จริง"], "k94": ["Fight night: Krudam Fight 35", "คืนขึ้นชก: Krudam Fight 35"], "k95": ["Full-size ring. Primo gear. Heavy bags, strength area, conditioning equipment and a recovery area.", "เวทีมวยขนาดมาตรฐาน อุปกรณ์ Primo กระสอบทราย โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k96": ["Google reviews", "รีวิวจาก Google"], "k97": ["Read all reviews on Google", "อ่านรีวิวทั้งหมดบน Google"], "k98": ["Open in Google Maps", "เปิดใน Google Maps"], "k99": ["Swipe", "เลื่อนดู"], "k100": ["Numsurin, ONE Championship contender", "หนุ่มสุรินทร์ นักมวย ONE Championship"], "k101": ["Assistant coach", "ผู้ช่วยโค้ช"], "k102": ["Coach is watching.", "โค้ชดูนะ"], "k103": ["Better behave.", "ตั้งใจซ้อมด้วย!!"], "k104": ["Youngest on the team. Strictest too.", "อายุน้อยที่สุดในทีม และเข้มที่สุดด้วย"], "k105": ["Schedule", "ตาราง"], "k106": ["Prices", "ราคา"], "k107": ["Real people. Real words.", "คนจริง เสียงจริง"], "k108": ["Your first round starts here.", "ยกแรกของคุณเริ่มที่นี่"], "k109": ["Pick a training, a day and a time. We will confirm your spot. New to Muay Thai? Start with a trial class.", "เลือกรูปแบบการฝึก วัน และเวลา แล้วเราจะยืนยันที่ให้คุณ เพิ่งเริ่มมวยไทย? เริ่มจากคลาสทดลองได้เลย"], "k110": ["Choose your training", "เลือกรูปแบบการฝึก"], "k111": ["Next: date and time", "ถัดไป: วันและเวลา"], "k112": ["Pick a day", "เลือกวัน"], "k113": ["Pick a time", "เลือกเวลา"], "k114": ["Choose a day first to see the class times.", "เลือกวันก่อนเพื่อดูเวลาคลาส"], "k115": ["How many people?", "กี่คน"], "k116": ["Back", "ย้อนกลับ"], "k117": ["Next: your details", "ถัดไป: ข้อมูลของคุณ"], "k118": ["Your details", "ข้อมูลของคุณ"], "k119": ["Name", "ชื่อ"], "k120": ["Phone number or LINE ID", "เบอร์โทรหรือ LINE ID"], "k121": ["Email (optional)", "อีเมล (ไม่บังคับ)"], "k122": ["Anything we should know? (optional)", "มีอะไรอยากบอกเราไหม (ไม่บังคับ)"], "k123": ["Confirm booking", "ยืนยันการจอง"], "k124": ["Demo: nothing is sent or stored, and no payment is taken.", "เดโม: ไม่มีการส่งหรือบันทึกข้อมูล และไม่มีการชำระเงิน"], "k125": ["Your request is in. We will confirm your spot by phone or message. Bring water and a smile; we have the rest.", "เราได้รับคำขอของคุณแล้ว และจะยืนยันที่ให้ทางโทรศัพท์หรือข้อความ เตรียมน้ำดื่มกับรอยยิ้มมาก็พอ ที่เหลือเรามีให้"], "k126": ["Book another session", "จองอีกครั้ง"], "k127": ["How to find us", "ดูเส้นทาง"], "k128": ["This is a demo confirmation. Nothing was sent or stored.", "นี่คือหน้ายืนยันตัวอย่าง ไม่มีการส่งหรือบันทึกข้อมูล"], "k129": ["Send us this message on LINE and we will confirm your spot:", "ส่งข้อความนี้ทาง LINE แล้วเราจะยืนยันที่ให้คุณ"], "k130": ["Open LINE", "เปิด LINE"], "k131": ["Directions", "เส้นทาง"], "k132": ["Location and contact", "ที่ตั้งและติดต่อ"], "k133": ["Find us on Sathu Pradit 58.", "เราอยู่ที่สาธุประดิษฐ์ 58"], "k134": ["First class daily at 07:00. Private sessions and open gym by appointment, 09:30-16:00 and 17:30-20:30.", "คลาสแรกทุกวัน 07:00 เทรนส่วนตัวและโอเพ่นยิมต้องนัดหมาย 09:30-16:00 และ 17:30-20:30"], "k135": ["Phone", "โทร"], "k136": ["Trial class", "คลาสทดลอง"]};
 var t = {};
 Object.keys(T).forEach(function (k) { t[k] = T[k][L ? 1 : 0]; });
 
@@ -875,18 +907,44 @@ return Object.assign({}, x, { on: on, cls: on ? 'on' : '', pick: function () { s
 var DOW = L ? ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'] : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var MON = L ? ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'] : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var now = new Date();
+var today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 var first = isGroup ? 0 : 1;
-var days = [];
+var minDate = new Date(today0.getFullYear(), today0.getMonth(), today0.getDate() + first);
+var MAXM = 6;
+var keyOf = function (d) { return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); };
+var labelOf = function (d) { return DOW[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()] + (d.getFullYear() !== now.getFullYear() ? ' ' + d.getFullYear() : ''); };
 var selDay = null;
+if (s.date) {
+var pp = String(s.date).split('-');
+var sd = new Date(+pp[0], +pp[1] - 1, +pp[2]);
+if (sd >= minDate) selDay = { key: s.date, weekend: sd.getDay() === 0 || sd.getDay() === 6, label: labelOf(sd) };
+}
+var pickDate = function (key) { set({ date: key, time: null, calOpen: false }); };
+var days = [];
 for (var i = first; i < first + 14; i++) {
 (function (i) {
-var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
-var key = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-var on = s.date === key;
-var day = { key: key, dow: i === 0 ? tr('Today', 'วันนี้') : DOW[d.getDay()], day: d.getDate(), mon: MON[d.getMonth()], weekend: d.getDay() === 0 || d.getDay() === 6, label: DOW[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()], on: on, cls: on ? 'on' : '', pick: function () { set({ date: key, time: null }); } };
-if (on) selDay = day;
-days.push(day);
+var d = new Date(today0.getFullYear(), today0.getMonth(), today0.getDate() + i);
+var key = keyOf(d);
+var on = !!selDay && selDay.key === key;
+days.push({ key: key, dow: i === 0 ? tr('Today', 'วันนี้') : DOW[d.getDay()], day: d.getDate(), mon: MON[d.getMonth()], on: on, cls: on ? 'on' : '', pick: function () { pickDate(key); } });
 })(i);
+}
+var MONF = L ? ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'] : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var cm = Math.max(0, Math.min(MAXM, s.calMonth || 0));
+var mStart = new Date(today0.getFullYear(), today0.getMonth() + cm, 1);
+var mDays = new Date(mStart.getFullYear(), mStart.getMonth() + 1, 0).getDate();
+var lead = (mStart.getDay() + 6) % 7;
+var calCells = [];
+for (var b = 0; b < lead; b++) calCells.push({ n: '', cls: 'blank', dis: true, on: false, label: '', pick: function () {} });
+for (var dd = 1; dd <= mDays; dd++) {
+(function (dd) {
+var d = new Date(mStart.getFullYear(), mStart.getMonth(), dd);
+var key = keyOf(d);
+var dis = d < minDate;
+var on = !!selDay && selDay.key === key;
+var cls = (on ? 'on' : '') + (d.getTime() === today0.getTime() ? ' today' : '');
+calCells.push({ n: dd, cls: cls, dis: dis, on: on, label: labelOf(d), pick: function () { if (!dis) pickDate(key); } });
+})(dd);
 }
 var times = [];
 if (selDay) {
@@ -936,6 +994,17 @@ priceTabs: priceTabs, priceRows: PRICES[s.price].rows, priceNote: PRICES[s.price
 notDone: s.step < 4, step1: s.step === 1, step2: s.step === 2, step3: s.step === 3, step4: s.step === 4,
 stepList: [tr('1. Training', '1. การฝึก'), tr('2. Date and time', '2. วันและเวลา'), tr('3. Your details', '3. ข้อมูลของคุณ')].map(function (l, i) { return { label: l, cls: s.step >= i + 1 ? 'on' : '' }; }),
 types: types, days: days, slots: slots, noDay: !selDay,
+calOpen: !!s.calOpen, calClosed: !s.calOpen, calBtnCls: s.calOpen ? 'on' : '',
+calBtnLabel: s.calOpen ? tr('Close calendar', 'ปิดปฏิทิน') : tr('Open calendar', 'เปิดปฏิทิน'),
+toggleCal: function () { var m = 0; if (selDay) { var q = String(selDay.key).split('-'); m = (+q[0] - now.getFullYear()) * 12 + (+q[1] - 1 - now.getMonth()); } set({ calOpen: !s.calOpen, calMonth: Math.max(0, Math.min(MAXM, m)) }); },
+calTitle: MONF[mStart.getMonth()] + ' ' + mStart.getFullYear(),
+calDow: L ? ['จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'] : ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+calCells: calCells,
+calPrevDis: cm <= 0, calNextDis: cm >= MAXM,
+calPrevLabel: tr('Previous month', 'เดือนก่อน'), calNextLabel: tr('Next month', 'เดือนถัดไป'),
+calPrev: function () { set({ calMonth: Math.max(0, cm - 1) }); },
+calNext: function () { set({ calMonth: Math.min(MAXM, cm + 1) }); },
+hasDay: !!selDay, pickedText: selDay ? tr('Selected: ', 'วันที่เลือก: ') + selDay.label : '',
 slotNote: isGroup ? tr('Group class times from the gym schedule.', 'เวลาคลาสกลุ่มตามตารางของยิม') : tr('Private sessions are by appointment, at least 24 hours ahead and subject to coach availability.', 'เทรนส่วนตัวต้องนัดหมายล่วงหน้าอย่างน้อย 24 ชั่วโมง ขึ้นอยู่กับตารางครูผู้สอน'),
 canCount: isGroup, fixedCount: !isGroup, people: people,
 peopleText: type.id === 'duo' ? tr('2 people (duo private)', '2 คน (เทรนส่วนตัวแบบคู่)') : tr('1 person. Training with a partner? Choose duo private.', '1 คน มาฝึกเป็นคู่? เลือกเทรนส่วนตัวแบบคู่'),
@@ -944,7 +1013,7 @@ less: function () { set({ people: Math.max(1, s.people - 1) }); },
 more: function () { set({ people: Math.min(8, s.people + 1) }); },
 next: next,
 back: function () { set({ step: Math.max(1, s.step - 1) }); },
-reset: function () { set({ step: 1, date: null, time: null, people: 1, waOpen: false }); },
+reset: function () { set({ step: 1, date: null, time: null, people: 1, waOpen: false, calOpen: false, calMonth: 0 }); },
 next2Cls: ok2 ? '' : 'btn-off', next3Cls: ok3 ? '' : 'btn-off',
 name: s.name, phone: s.phone, email: s.email, note: s.note,
 setName: function (e) { set({ name: e.target.value }); },
@@ -953,7 +1022,7 @@ setEmail: function (e) { set({ email: e.target.value }); },
 setNote: function (e) { set({ note: e.target.value }); },
 doneTitle: L ? ('แล้วเจอกันที่ยิม' + (firstName ? ' คุณ' + firstName : '')) : ('See you at the gym' + (firstName ? ', ' + firstName : '') + '.'),
 summary: summary, summaryFull: summaryFull,
-waOpen: s.waOpen, waMsg: waMsg,
+waOpen: s.waOpen, waMsg: waMsg, lineUrl: 'https://line.me/R/oaMessage/%40phetsiam/?' + encodeURIComponent(waMsg),
 toggleWa: function () { set({ waOpen: !s.waOpen }); },
 openWa: function () { set({ waOpen: true }); },
 pickNumsurin: function () { set({ type: 'numsurin', step: 1, time: null }); }
