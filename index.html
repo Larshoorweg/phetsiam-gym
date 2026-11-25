@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,600;1,700;1,800&family=Inter:wght@400;500;600&family=Kanit:wght@400;500&display=swap">
 <style>
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-anchor:none}
 body{margin:0;background:#161616}
 a{color:inherit}a:hover{color:inherit}
 .root > *{flex-shrink:0}
@@ -312,7 +312,8 @@ a{color:inherit}a:hover{color:inherit}
 .picked{margin-top:10px;font-size:14px;font-weight:600}
 
 /* booking v2 */
-.bk-card{background:#fff;padding:18px 18px 10px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.root{overflow-anchor:none}
+.bk-card{scroll-margin-top:72px;background:#fff;padding:18px 18px 10px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
 .bk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
 .bk-count{font-size:13px;font-weight:600;color:#5A5A58}
 .bk-back{display:inline-flex;align-items:center;gap:2px;min-height:44px;padding:0 2px;border:0;background:none;color:#161616;font:600 14px Inter,sans-serif;cursor:pointer}
@@ -905,7 +906,15 @@ var vh = window.innerHeight || 0;
 for (var i = 0; i < els.length; i++) { var r = els[i].getBoundingClientRect(); if (r.top < vh && r.bottom > 0) els[i].classList.add('in'); }
 }, 1600);
 }
-componentDidUpdate() { this._rv(); }
+componentDidUpdate() {
+this._rv();
+var st = (this.state && this.state.step) || 1;
+if (this._step !== undefined && this._step !== st) {
+var c = document.querySelector('.bk-card');
+if (c) { var r = c.getBoundingClientRect(); var vh = window.innerHeight || 800; if (r.top < 64 || r.top > vh * 0.5) c.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+}
+this._step = st;
+}
 componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._bio) this._bio.disconnect(); if (this._safe) clearTimeout(this._safe); }
 _rv() {
 if (typeof IntersectionObserver === 'undefined') return;
