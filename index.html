@@ -31,7 +31,7 @@ a{color:inherit}a:hover{color:inherit}
 .th{font-family:Kanit,Inter,sans-serif;font-weight:400}
 .eyebrow{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:15px;color:#C4C4C0}
 .wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
-.sec{padding:40px 0}
+.sec{padding:35px 0}
 .m-hide,.m-hide-li{display:none}
 .light{background:#F5F5F3 repeating-linear-gradient(90deg,rgba(22,22,22,0) 0 22px,rgba(22,22,22,.045) 22px 24px);color:#161616}
 .light .eyebrow{color:#5A5A58}
@@ -153,7 +153,7 @@ a{color:inherit}a:hover{color:inherit}
 .tab{flex:0 0 auto;min-height:44px;padding:0 16px;border:0;cursor:pointer;background:rgba(22,22,22,.08);color:#161616;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-style:italic;font-weight:700;font-size:18px;letter-spacing:.05em;text-transform:uppercase;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
 .tab.on{background:#161616;color:#F5F5F3}
 .sp-grid{display:flex;flex-direction:column;gap:56px}
-.sp-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:30px}
+.sp-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:22px}
 .sp-switch button{min-height:54px;border:0;cursor:pointer;background:rgba(22,22,22,.08);color:#161616;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-style:italic;font-weight:800;font-size:24px;letter-spacing:.04em;text-transform:uppercase;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
 .sp-switch button.on{background:#161616;color:#F5F5F3}
 .sp-col.off{display:none}
@@ -378,6 +378,36 @@ a{color:inherit}a:hover{color:inherit}
 .wa-box{display:flex;flex-direction:column;gap:10px;padding:14px;margin-bottom:10px;background:#F5F5F3}
 .wa-msg{border:0;font-size:14px}
 
+/* schedule and prices v2 */
+.card{background:#fff;padding:16px;box-shadow:0 10px 30px rgba(22,22,22,.08)}
+.wk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.wk button{min-height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1.5px solid #DADAD6;background:#fff;color:#161616;font:600 13px Inter,sans-serif;cursor:pointer;transition:border-color .15s ease}
+.wk button:hover{border-color:#8E8E8C}
+.wk button i{width:5px;height:5px;border-radius:50%;background:transparent}
+.wk button.today i{background:#161616}
+.wk button.on{background:#161616;border-color:#161616;color:#F5F5F3}
+.wk button.on.today i{background:#F5F5F3}
+.wk-t{margin:12px 0 2px;font-size:13px;font-weight:600;color:#5A5A58}
+.tt li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;min-height:50px;padding:6px 0;border-top:1px solid #EDEDEA}
+.tt li:first-child{border-top:0}
+.tt-t{display:flex;flex-direction:column;line-height:1.25;font-variant-numeric:tabular-nums}
+.tt-t b{font-size:16px;font-weight:600}
+.tt-t small,.tt-n small{font-size:12px;color:#5A5A58}
+.tt-n{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.tt-n b{font-size:15px;font-weight:600}
+.lv{font-size:11px;font-weight:600;padding:4px 8px;white-space:nowrap;background:#EDEDEA;color:#161616}
+.lv.pro{background:#161616;color:#F5F5F3}
+.lv.spc{background:#F2C230}
+.tt-x{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;padding:10px 12px;background:#F5F5F3}
+.tt-a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:600;white-space:nowrap;text-underline-offset:4px}
+.seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1.5px solid #DADAD6;margin-bottom:6px}
+.seg button{min-height:44px;border:0;background:#fff;color:#161616;font:600 13px Inter,sans-serif;cursor:pointer}
+.seg button.on{background:#161616;color:#F5F5F3}
+.card .price{padding:12px 0;border-top-color:#EDEDEA}
+.seg + .price{border-top:0}
+.card .note{margin-top:6px}
+.card-cta{width:100%;margin-top:14px}
+
 /* motion */
 @keyframes ph-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @keyframes ph-zoom{from{transform:scale(1.12)}to{transform:scale(1)}}
@@ -490,6 +520,8 @@ a{color:inherit}a:hover{color:inherit}
 .tabs{margin:0 0 18px;padding:0;flex-wrap:wrap}
 .sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;align-items:start}
 .panel{padding:26px}
+.card{padding:24px}
+.tt li{min-height:56px;padding:8px 0}
 .adv{grid-template-columns:70px minmax(0,1fr) minmax(0,1fr);font-size:14px}
 
 .trs{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px;align-items:start}
@@ -549,7 +581,7 @@ a{color:inherit}a:hover{color:inherit}
 <section class="hero" id="top">
 <div class="hero-photo"><img src="assets/hero-team-tall.jpg" alt="Fighters, trainers and students of Phetsiam standing together in front of the ring in the steel hall"></div>
 <div class="hero-copy">
-<a class="pill" href="#numsurin"><span>{{t.k100}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a class="pill" href="#numsurin"><span>{{t.k87}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <h1 class="h h1">{{t.k8}}<br>{{t.k9}}</h1>
 <p class="lede">{{t.k10}}</p>
 <div class="cta-row">
@@ -617,7 +649,7 @@ a{color:inherit}a:hover{color:inherit}
 <p class="eyebrow">{{t.k31}}</p>
 <h2 class="h h2">{{t.k32}}</h2>
 </div>
-<p class="swipe" aria-hidden="true"><span>{{t.k99}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+<p class="swipe" aria-hidden="true"><span>{{t.k86}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
 <div class="scroller opts" data-rv>
 <div class="opt"><span class="n">01 / Zone B</span><h3 class="h">{{t.k33}}</h3><p>{{t.k43}}</p><span class="foot">{{t.k49}}</span></div>
 <div class="opt"><span class="n">02 / Zone A</span><h3 class="h">{{t.k34}}</h3><p>{{t.k44}}</p><span class="foot">{{t.k50}}</span></div>
@@ -631,73 +663,47 @@ a{color:inherit}a:hover{color:inherit}
 
 <section class="sec light" id="schedule">
 <div class="wrap">
-<div class="sp-switch" role="group" aria-label="Schedule or prices"><button type="button" class="{{spSchedCls}}" aria-pressed="{{spSched}}" onClick="{{showSched}}">{{t.k105}}</button><button type="button" class="{{spPriceCls}}" aria-pressed="{{spPrice}}" onClick="{{showPrice}}">{{t.k106}}</button></div>
+<div class="sp-switch" role="group" aria-label="Schedule or prices"><button type="button" class="{{spSchedCls}}" aria-pressed="{{spSched}}" onClick="{{showSched}}">{{t.k92}}</button><button type="button" class="{{spPriceCls}}" aria-pressed="{{spPrice}}" onClick="{{showPrice}}">{{t.k93}}</button></div>
 <div class="sp-grid">
 <div class="sp-col {{schedOff}}">
 <div class="head" data-rv>
 <p class="eyebrow">{{t.k55}}</p>
 <h2 class="h h2">{{t.k56}}</h2>
 </div>
-<div class="tabs" role="group" aria-label="Schedule">
-<sc-for list="{{schedTabs}}" as="t" hint-placeholder-count="4"><button type="button" class="tab {{t.cls}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
+<div class="card" data-rv>
+<div class="wk" role="group" aria-label="Day of the week">
+<sc-for list="{{week}}" as="wd" hint-placeholder-count="7"><button type="button" class="{{wd.cls}}" aria-pressed="{{wd.on}}" onClick="{{wd.pick}}"><span>{{wd.label}}</span><i></i></button></sc-for>
 </div>
-<div class="panel" data-rv>
-<sc-if value="{{schedAll}}" hint-placeholder-val="{{ true }}">
-<div class="blk">
-<div class="blk-h"><b>{{t.k57}}</b></div>
-<ul class="times"><li>07:00-08:15</li><li>10:00-11:15</li><li>15:00-16:15</li><li>16:30-17:45</li><li>18:00-19:00</li><li>19:00-20:00</li></ul>
-</div>
-<div class="blk">
-<div class="blk-h"><b>{{t.k54}}</b></div>
-<ul class="times"><li>07:00-08:15</li><li>09:00-10:15</li><li>15:00-16:15</li><li>16:30-17:45</li></ul>
-</div>
-<p class="note">{{t.k58}}</p>
-</sc-if>
-<sc-if value="{{schedAdv}}" hint-placeholder-val="{{ false }}">
-<div class="adv hd"><span>{{t.k59}}</span><span>{{t.k60}}</span><span>{{t.k61}}</span></div>
-<sc-for list="{{advRows}}" as="a" hint-placeholder-count="7"><div class="adv"><b>{{a.d}}</b><span>{{a.m}}</span><span>{{a.a}}</span></div></sc-for>
-<p class="note">{{t.k62}}</p>
-</sc-if>
-<sc-if value="{{schedPriv}}" hint-placeholder-val="{{ false }}">
-<ul class="kv">
-<li><b>{{t.k63}}</b><span>{{t.k64}}</span></li>
-<li><b>{{t.k37}}</b><span>{{t.k64}}</span></li>
+<p class="wk-t">{{dayTitle}}</p>
+<ul class="tt">
+<sc-for list="{{dayRows}}" as="c" hint-placeholder-count="8"><li><span class="tt-t"><b>{{c.start}}</b><small>{{c.end}}</small></span><span class="tt-n"><b>{{c.name}}</b><small>{{c.sub}}</small></span><span class="lv {{c.lv}}">{{c.tag}}</span></li></sc-for>
 </ul>
-<p class="note">{{t.k65}}</p>
-</sc-if>
-<sc-if value="{{schedSpec}}" hint-placeholder-val="{{ false }}">
-<ul class="kv">
-<li><b>Phetsiam Sparring Club</b><span>{{t.k66}}</span></li>
-<li><b>Athlete Mobility Class</b><span>{{t.k67}}</span></li>
-<li><b>Ice Bath and Recovery</b><span>{{t.k68}}</span></li>
-<li><b>Community Time</b><span>{{t.k69}}</span></li>
-</ul>
-<p class="note">{{t.k70}}</p>
-</sc-if>
+<div class="tt-x"><span class="tt-n"><b>{{privTitle}}</b><small>{{privSub}}</small></span><a class="tt-a" href="#book">{{t.k6}}</a></div>
 </div>
 </div>
 
 <div id="prices" class="sp-col {{priceOff}}">
 <div class="head" data-rv>
-<p class="eyebrow">{{t.k71}}</p>
-<h2 class="h h2">{{t.k72}}</h2>
+<p class="eyebrow">{{t.k58}}</p>
+<h2 class="h h2">{{t.k59}}</h2>
 </div>
-<div class="tabs" role="group" aria-label="Prices">
-<sc-for list="{{priceTabs}}" as="t" hint-placeholder-count="3"><button type="button" class="tab {{t.cls}}" onClick="{{t.pick}}">{{t.label}}</button></sc-for>
+<div class="card" data-rv>
+<div class="seg" role="group" aria-label="Prices">
+<sc-for list="{{priceTabs}}" as="pt" hint-placeholder-count="3"><button type="button" class="{{pt.cls}}" aria-pressed="{{pt.on}}" onClick="{{pt.pick}}">{{pt.label}}</button></sc-for>
 </div>
-<div class="panel" data-rv>
 <sc-for list="{{priceRows}}" as="p" hint-placeholder-count="5"><div class="price"><span class="pn">{{p.n}}<sc-if value="{{p.tag}}" hint-placeholder-val="{{ false }}"><span class="tag">{{p.tag}}</span></sc-if></span><span class="pd">{{p.d}}</span><span class="pp">{{p.p}}<small>THB</small></span></div></sc-for>
 <p class="note">{{priceNote}}</p>
+<a class="btn btn-dark card-cta" href="#book">{{t.k6}}</a>
 </div>
 <details class="rules">
-<summary>{{t.k73}}</summary>
+<summary>{{t.k60}}</summary>
 <ul>
-<li>{{t.k74}}</li>
-<li>{{t.k75}}</li>
-<li>{{t.k76}}</li>
-<li>{{t.k77}}</li>
-<li>{{t.k78}}</li>
-<li>{{t.k79}}</li>
+<li>{{t.k61}}</li>
+<li>{{t.k62}}</li>
+<li>{{t.k63}}</li>
+<li>{{t.k64}}</li>
+<li>{{t.k65}}</li>
+<li>{{t.k66}}</li>
 </ul>
 </details>
 </div>
@@ -708,19 +714,19 @@ a{color:inherit}a:hover{color:inherit}
 <section class="sec" id="trainers">
 <div class="wrap">
 <div class="head" data-rv>
-<p class="eyebrow">{{t.k80}}</p>
-<h2 class="h h2">{{t.k81}}</h2>
+<p class="eyebrow">{{t.k67}}</p>
+<h2 class="h h2">{{t.k68}}</h2>
 </div>
-<p class="swipe" aria-hidden="true"><span>{{t.k99}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+<p class="swipe" aria-hidden="true"><span>{{t.k86}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
 <div class="scroller trs" data-rv>
-<figure class="tr"><img src="assets/poster-kai.jpg" alt="Kru Kai, Por.Prasit Kor Kai Lek (Worrawit Sathonrat): 210 fights, 75% win rate, style Muay Khao"><figcaption class="tg">{{t.k82}}</figcaption></figure>
-<figure class="tr"><img src="assets/poster-lead.jpg" alt="Kru Lead, Leadchai (Lerdchai Chaiyawed): 124 fights, 70% win rate, style Muay Mad"><figcaption class="tg">{{t.k83}}</figcaption></figure>
-<figure class="tr"><img src="assets/poster-mew.jpg" alt="Kru Mew, Kairo (Surasak Chumkeaw): 320 fights, 70% win rate, style Muay Femur"><figcaption class="tg">{{t.k84}}</figcaption></figure>
-<figure class="tr"><img src="assets/poster-nut.jpg" alt="Kru Nut, Sor.Sangtong Jaiphet (Nuttachai Sangadang): 100 fights, 80% win rate, style Muay Femur"><figcaption class="tg">{{t.k85}}</figcaption></figure>
-<figure class="tr"><img src="assets/poster-owen.jpg" alt="Kru Owen, K.Thasai Mareo (Anurak Tuwtong): 180 fights, 80% win rate, style Muay Femur"><figcaption class="tg">{{t.k86}}</figcaption></figure>
-<figure class="tr"><img src="assets/poster-sami.jpg" alt="Kru Sami, Sami Jansens: bachelor degree in physical education, kickboxing and Muay Thai background, 75% win rate, strength and conditioning specialist, athletic performance and fitness coach"><figcaption class="tg">{{t.k87}}</figcaption></figure>
-<figure class="tr"><img src="assets/poster-tom.jpg" alt="Kru Tom, Haitongkam Narindech (Denchai Somarpa): 190 fights, 75% win rate, style Muay Femur"><figcaption class="tg">{{t.k88}}</figcaption></figure>
-<figure class="tr kid"><div class="kid-pic"><img src="assets/little-coach.jpg" alt="A small child in a gym shirt watching training through the ring ropes with a serious face"><div class="kid-t"><span class="kid-e">{{t.k101}}</span><b class="h">{{t.k102}}</b><span class="kid-s">{{t.k103}}</span></div></div><figcaption class="tg">{{t.k104}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-kai.jpg" alt="Kru Kai, Por.Prasit Kor Kai Lek (Worrawit Sathonrat): 210 fights, 75% win rate, style Muay Khao"><figcaption class="tg">{{t.k69}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-lead.jpg" alt="Kru Lead, Leadchai (Lerdchai Chaiyawed): 124 fights, 70% win rate, style Muay Mad"><figcaption class="tg">{{t.k70}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-mew.jpg" alt="Kru Mew, Kairo (Surasak Chumkeaw): 320 fights, 70% win rate, style Muay Femur"><figcaption class="tg">{{t.k71}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-nut.jpg" alt="Kru Nut, Sor.Sangtong Jaiphet (Nuttachai Sangadang): 100 fights, 80% win rate, style Muay Femur"><figcaption class="tg">{{t.k72}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-owen.jpg" alt="Kru Owen, K.Thasai Mareo (Anurak Tuwtong): 180 fights, 80% win rate, style Muay Femur"><figcaption class="tg">{{t.k73}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-sami.jpg" alt="Kru Sami, Sami Jansens: bachelor degree in physical education, kickboxing and Muay Thai background, 75% win rate, strength and conditioning specialist, athletic performance and fitness coach"><figcaption class="tg">{{t.k74}}</figcaption></figure>
+<figure class="tr"><img src="assets/poster-tom.jpg" alt="Kru Tom, Haitongkam Narindech (Denchai Somarpa): 190 fights, 75% win rate, style Muay Femur"><figcaption class="tg">{{t.k75}}</figcaption></figure>
+<figure class="tr kid"><div class="kid-pic"><img src="assets/little-coach.jpg" alt="A small child in a gym shirt watching training through the ring ropes with a serious face"><div class="kid-t"><span class="kid-e">{{t.k88}}</span><b class="h">{{t.k89}}</b><span class="kid-s">{{t.k90}}</span></div></div><figcaption class="tg">{{t.k91}}</figcaption></figure>
 </div>
 </div>
 </section>
@@ -729,32 +735,32 @@ a{color:inherit}a:hover{color:inherit}
 <div class="wrap">
 <div class="head" data-rv>
 <p class="eyebrow">{{t.k4}}</p>
-<h2 class="h h2">{{t.k89}}</h2>
+<h2 class="h h2">{{t.k76}}</h2>
 </div>
 <div class="scroller gal" data-rv>
-<figure class="big"><img src="assets/team-ring.jpg" alt="The Phetsiam team posing in front of the ring with the Phetsiam banner behind them"><figcaption class="cap">{{t.k90}}</figcaption></figure>
-<figure><img src="assets/pads-ropes.jpg" alt="A trainer holding pads talks to a fighter at the ropes between rounds"><figcaption class="cap">{{t.k91}}</figcaption></figure>
-<figure><img src="assets/ropes-rest.jpg" alt="Fighters resting on the white Phetsiam ropes"><figcaption class="cap">{{t.k92}}</figcaption></figure>
-<figure><img src="assets/sparring-posters.jpg" alt="Two people sparring in front of the trainer posters"><figcaption class="cap">{{t.k93}}</figcaption></figure>
-<figure><img src="assets/fightnight.jpg" alt="Adam Johnson with medal, trophy and certificate after his fight, with his Phetsiam corner team"><figcaption class="cap">{{t.k94}}</figcaption></figure>
+<figure class="big"><img src="assets/team-ring.jpg" alt="The Phetsiam team posing in front of the ring with the Phetsiam banner behind them"><figcaption class="cap">{{t.k77}}</figcaption></figure>
+<figure><img src="assets/pads-ropes.jpg" alt="A trainer holding pads talks to a fighter at the ropes between rounds"><figcaption class="cap">{{t.k78}}</figcaption></figure>
+<figure><img src="assets/ropes-rest.jpg" alt="Fighters resting on the white Phetsiam ropes"><figcaption class="cap">{{t.k79}}</figcaption></figure>
+<figure><img src="assets/sparring-posters.jpg" alt="Two people sparring in front of the trainer posters"><figcaption class="cap">{{t.k80}}</figcaption></figure>
+<figure><img src="assets/fightnight.jpg" alt="Adam Johnson with medal, trophy and certificate after his fight, with his Phetsiam corner team"><figcaption class="cap">{{t.k81}}</figcaption></figure>
 </div>
-<p class="note m-hide">{{t.k95}}</p>
+<p class="note m-hide">{{t.k82}}</p>
 </div>
 </section>
 
 <section class="sec dim" id="reviews">
 <div class="wrap">
 <div class="head" data-rv>
-<p class="eyebrow">{{t.k96}}</p>
-<h2 class="h h2">{{t.k107}}</h2>
+<p class="eyebrow">{{t.k83}}</p>
+<h2 class="h h2">{{t.k94}}</h2>
 </div>
-<p class="swipe" aria-hidden="true"><span>{{t.k99}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+<p class="swipe" aria-hidden="true"><span>{{t.k86}}</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
 <div class="scroller rvs" data-rv>
 <figure class="rv"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"I took a private session at the gym and it was brilliant. I have trained in 5 or 6 gyms across Thailand and the quality of this session was exceptional."</blockquote><figcaption class="who"><b>Oliver Marrow</b><span>Google review</span></figcaption></figure>
 <figure class="rv"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"All the coaches are great at teaching, and the gym has a spacious training area. [...] I come here regularly and will definitely keep coming back!"</blockquote><figcaption class="who"><b>panisara buddee</b><span>Google review</span></figcaption></figure>
 <figure class="rv"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"The atmosphere is super welcoming and friendly. The whole team is absolutely fantastic and their teaching is excellent."</blockquote><figcaption class="who"><b>Tatjana D</b><span>Google review</span></figcaption></figure>
 </div>
-<p class="rv-more"><a class="textlink" href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener">{{t.k97}}</a></p>
+<p class="rv-more"><a class="textlink" href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener">{{t.k84}}</a></p>
 </div>
 </section>
 
@@ -762,13 +768,13 @@ a{color:inherit}a:hover{color:inherit}
 <div class="wrap bk-grid">
 <div class="bk-side" data-rv>
 <p class="eyebrow">{{t.k6}}</p>
-<h2 class="h bk-h">{{t.k108}}</h2>
-<p class="lede m-hide">{{t.k109}}</p>
+<h2 class="h bk-h">{{t.k95}}</h2>
+<p class="lede m-hide">{{t.k96}}</p>
 </div>
 
 <div class="bk-card" data-rv>
 <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
-<div class="bk-top"><span class="bk-count">{{stepCount}}</span><sc-if value="{{canBack}}" hint-placeholder-val="{{ false }}"><button type="button" class="bk-back" onClick="{{back}}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span>{{t.k111}}</span></button></sc-if></div>
+<div class="bk-top"><span class="bk-count">{{stepCount}}</span><sc-if value="{{canBack}}" hint-placeholder-val="{{ false }}"><button type="button" class="bk-back" onClick="{{back}}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span>{{t.k98}}</span></button></sc-if></div>
 <div class="bk-bar {{barCls}}" aria-hidden="true"><i></i><i></i><i></i></div>
 <h3 class="h bk-title">{{stepTitle}}</h3>
 </sc-if>
@@ -780,7 +786,7 @@ a{color:inherit}a:hover{color:inherit}
 </sc-if>
 
 <sc-if value="{{step2}}" hint-placeholder-val="{{ false }}">
-<div class="lbl"><span>{{t.k59}}</span><button type="button" class="cal-btn {{calBtnCls}}" aria-expanded="{{calOpen}}" aria-label="{{calBtnLabel}}" onClick="{{toggleCal}}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>{{t.k128}}</span></button></div>
+<div class="lbl"><span>{{t.k57}}</span><button type="button" class="cal-btn {{calBtnCls}}" aria-expanded="{{calOpen}}" aria-label="{{calBtnLabel}}" onClick="{{toggleCal}}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>{{t.k115}}</span></button></div>
 <sc-if value="{{calClosed}}" hint-placeholder-val="{{ true }}">
 <div class="days">
 <sc-for list="{{days}}" as="d" hint-placeholder-count="7"><button type="button" class="{{d.cls}}" aria-pressed="{{d.on}}" onClick="{{d.pick}}"><span>{{d.dow}}</span><b>{{d.day}}</b><span>{{d.mon}}</span></button></sc-for>
@@ -796,19 +802,19 @@ a{color:inherit}a:hover{color:inherit}
 </div>
 </sc-if>
 <sc-if value="{{hasDay}}" hint-placeholder-val="{{ false }}"><p class="picked">{{pickedText}}</p></sc-if>
-<div class="lbl"><span>{{t.k123}}</span></div>
-<sc-if value="{{noDay}}" hint-placeholder-val="{{ false }}"><p class="empty">{{t.k110}}</p></sc-if>
-<sc-if value="{{hasAm}}" hint-placeholder-val="{{ false }}"><div class="sg"><span class="sg-l">{{t.k125}}</span><div class="slots"><sc-for list="{{slotsAm}}" as="sl" hint-placeholder-count="3"><button type="button" class="{{sl.cls}}" aria-pressed="{{sl.on}}" onClick="{{sl.pick}}"><b>{{sl.start}}</b><small>{{sl.dur}}</small></button></sc-for></div></div></sc-if>
-<sc-if value="{{hasPm}}" hint-placeholder-val="{{ false }}"><div class="sg"><span class="sg-l">{{t.k126}}</span><div class="slots"><sc-for list="{{slotsPm}}" as="sl" hint-placeholder-count="3"><button type="button" class="{{sl.cls}}" aria-pressed="{{sl.on}}" onClick="{{sl.pick}}"><b>{{sl.start}}</b><small>{{sl.dur}}</small></button></sc-for></div></div></sc-if>
-<sc-if value="{{hasEv}}" hint-placeholder-val="{{ false }}"><div class="sg"><span class="sg-l">{{t.k127}}</span><div class="slots"><sc-for list="{{slotsEv}}" as="sl" hint-placeholder-count="3"><button type="button" class="{{sl.cls}}" aria-pressed="{{sl.on}}" onClick="{{sl.pick}}"><b>{{sl.start}}</b><small>{{sl.dur}}</small></button></sc-for></div></div></sc-if>
-<div class="ppl"><div class="ppl-t"><span class="ppl-l">{{t.k124}}</span><span class="ppl-s">{{pplSub}}</span></div><sc-if value="{{canCount}}" hint-placeholder-val="{{ true }}"><div class="stepper"><button type="button" aria-label="One person fewer" onClick="{{less}}">-</button><b>{{people}}</b><button type="button" aria-label="One person more" onClick="{{more}}">+</button></div></sc-if></div>
+<div class="lbl"><span>{{t.k110}}</span></div>
+<sc-if value="{{noDay}}" hint-placeholder-val="{{ false }}"><p class="empty">{{t.k97}}</p></sc-if>
+<sc-if value="{{hasAm}}" hint-placeholder-val="{{ false }}"><div class="sg"><span class="sg-l">{{t.k112}}</span><div class="slots"><sc-for list="{{slotsAm}}" as="sl" hint-placeholder-count="3"><button type="button" class="{{sl.cls}}" aria-pressed="{{sl.on}}" onClick="{{sl.pick}}"><b>{{sl.start}}</b><small>{{sl.dur}}</small></button></sc-for></div></div></sc-if>
+<sc-if value="{{hasPm}}" hint-placeholder-val="{{ false }}"><div class="sg"><span class="sg-l">{{t.k113}}</span><div class="slots"><sc-for list="{{slotsPm}}" as="sl" hint-placeholder-count="3"><button type="button" class="{{sl.cls}}" aria-pressed="{{sl.on}}" onClick="{{sl.pick}}"><b>{{sl.start}}</b><small>{{sl.dur}}</small></button></sc-for></div></div></sc-if>
+<sc-if value="{{hasEv}}" hint-placeholder-val="{{ false }}"><div class="sg"><span class="sg-l">{{t.k114}}</span><div class="slots"><sc-for list="{{slotsEv}}" as="sl" hint-placeholder-count="3"><button type="button" class="{{sl.cls}}" aria-pressed="{{sl.on}}" onClick="{{sl.pick}}"><b>{{sl.start}}</b><small>{{sl.dur}}</small></button></sc-for></div></div></sc-if>
+<div class="ppl"><div class="ppl-t"><span class="ppl-l">{{t.k111}}</span><span class="ppl-s">{{pplSub}}</span></div><sc-if value="{{canCount}}" hint-placeholder-val="{{ true }}"><div class="stepper"><button type="button" aria-label="One person fewer" onClick="{{less}}">-</button><b>{{people}}</b><button type="button" aria-label="One person more" onClick="{{more}}">+</button></div></sc-if></div>
 </sc-if>
 
 <sc-if value="{{step3}}" hint-placeholder-val="{{ false }}">
-<div class="fld"><label for="bk-name">{{t.k112}}</label><input id="bk-name" type="text" autocomplete="name" value="{{name}}" onChange="{{setName}}"></div>
-<div class="fld"><label for="bk-phone">{{t.k113}}</label><input id="bk-phone" type="tel" autocomplete="tel" value="{{phone}}" onChange="{{setPhone}}"></div>
-<div class="fld"><label for="bk-mail">{{t.k114}}</label><input id="bk-mail" type="email" autocomplete="email" value="{{email}}" onChange="{{setEmail}}"></div>
-<details class="note-d"><summary>{{t.k130}}</summary><div class="fld"><label for="bk-note">{{t.k115}}</label><textarea id="bk-note" value="{{note}}" onChange="{{setNote}}"></textarea></div></details>
+<div class="fld"><label for="bk-name">{{t.k99}}</label><input id="bk-name" type="text" autocomplete="name" value="{{name}}" onChange="{{setName}}"></div>
+<div class="fld"><label for="bk-phone">{{t.k100}}</label><input id="bk-phone" type="tel" autocomplete="tel" value="{{phone}}" onChange="{{setPhone}}"></div>
+<div class="fld"><label for="bk-mail">{{t.k101}}</label><input id="bk-mail" type="email" autocomplete="email" value="{{email}}" onChange="{{setEmail}}"></div>
+<details class="note-d"><summary>{{t.k117}}</summary><div class="fld"><label for="bk-note">{{t.k102}}</label><textarea id="bk-note" value="{{note}}" onChange="{{setNote}}"></textarea></div></details>
 </sc-if>
 
 <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
@@ -816,28 +822,28 @@ a{color:inherit}a:hover{color:inherit}
 <div class="bk-sum"><span>{{footLine}}</span><b>{{total}}</b></div>
 <button type="button" class="btn btn-red bk-next {{nextCls}}" onClick="{{next}}">{{nextLabel}}</button>
 <sc-if value="{{hasHint}}" hint-placeholder-val="{{ false }}"><p class="bk-hint">{{hint}}</p></sc-if>
-<sc-if value="{{step3}}" hint-placeholder-val="{{ false }}"><p class="bk-hint">{{t.k116}}</p></sc-if>
+<sc-if value="{{step3}}" hint-placeholder-val="{{ false }}"><p class="bk-hint">{{t.k103}}</p></sc-if>
 </div>
 </sc-if>
 
 <sc-if value="{{step4}}" hint-placeholder-val="{{ false }}">
 <div class="done-mark"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
 <h3 class="h bk-title">{{doneTitle}}</h3>
-<p class="done-p">{{t.k117}}</p>
+<p class="done-p">{{t.k104}}</p>
 <ul class="sum">
 <sc-for list="{{summaryFull}}" as="r" hint-placeholder-count="6"><li><span>{{r.k}}</span><b>{{r.v}}</b></li></sc-for>
 </ul>
-<div class="bk-foot"><a class="btn btn-dark bk-next" href="#location">{{t.k119}}</a><button type="button" class="line-link" onClick="{{reset}}"><span class="u">{{t.k118}}</span></button><p class="bk-hint">{{t.k120}}</p></div>
+<div class="bk-foot"><a class="btn btn-dark bk-next" href="#location">{{t.k106}}</a><button type="button" class="line-link" onClick="{{reset}}"><span class="u">{{t.k105}}</span></button><p class="bk-hint">{{t.k107}}</p></div>
 </sc-if>
 
 <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
 <div class="wa">
-<button type="button" class="line-link" aria-expanded="{{waOpen}}" onClick="{{toggleWa}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg><span>{{t.k129}}</span><span class="u">{{t.k7}}</span></button>
+<button type="button" class="line-link" aria-expanded="{{waOpen}}" onClick="{{toggleWa}}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg><span>{{t.k116}}</span><span class="u">{{t.k7}}</span></button>
 <sc-if value="{{waOpen}}" hint-placeholder-val="{{ false }}">
 <div class="wa-box">
-<p class="bk-hint" style="text-align:left">{{t.k121}}</p>
+<p class="bk-hint" style="text-align:left">{{t.k108}}</p>
 <div class="wa-msg">{{waMsg}}</div>
-<a class="btn btn-dark bk-next" href="{{lineUrl}}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg>{{t.k122}}</a>
+<a class="btn btn-dark bk-next" href="{{lineUrl}}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg>{{t.k109}}</a>
 </div>
 </sc-if>
 </div>
@@ -849,20 +855,20 @@ a{color:inherit}a:hover{color:inherit}
 <section class="sec light" id="location">
 <div class="wrap">
 <div class="head" data-rv>
-<p class="eyebrow">{{t.k132}}</p>
-<h2 class="h h2">{{t.k133}}</h2>
+<p class="eyebrow">{{t.k119}}</p>
+<h2 class="h h2">{{t.k120}}</h2>
 </div>
 <div class="loc-grid" data-rv>
-<a class="map" href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener" aria-label="Open Phetsiam Muay Thai Gym in Google Maps"><span class="map-pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="map-t"><b>Phetsiam Muay Thai Gym</b><span>Sathu Pradit 58, Yan Nawa, Bangkok</span></span><span class="btn btn-dark">{{t.k98}}</span></a>
+<a class="map" href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener" aria-label="Open Phetsiam Muay Thai Gym in Google Maps"><span class="map-pin"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="map-t"><b>Phetsiam Muay Thai Gym</b><span>Sathu Pradit 58, Yan Nawa, Bangkok</span></span><span class="btn btn-dark">{{t.k85}}</span></a>
 <div style="display:flex;flex-direction:column;gap:18px">
 <p class="addr">Phetsiam Muay Thai Gym<br>127 Sathupradit Soi 58 Yak 13<br>Bang Pong Pang, Yan Nawa, Bangkok<br><span class="small">Rama 3 / Sathorn area</span></p>
-<p class="small m-hide">{{t.k134}} <span class="todo">[Opening hours]</span></p>
+<p class="small m-hide">{{t.k121}} <span class="todo">[Opening hours]</span></p>
 <div class="ct">
-<a href="tel:0994526419"><span>{{t.k135}}</span>099 452 6419</a>
-<a href="tel:0994525464"><span>{{t.k135}}</span>099 452 5464</a>
+<a href="tel:0994526419"><span>{{t.k122}}</span>099 452 6419</a>
+<a href="tel:0994525464"><span>{{t.k122}}</span>099 452 5464</a>
 <a href="https://line.me/R/ti/p/%40phetsiam" target="_blank" rel="noopener"><span>LINE</span>@phetsiam</a>
 <a href="https://www.instagram.com/phetsiam.muaythai/"><span>Instagram</span>phetsiam.muaythai</a>
-<a href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener"><span>{{t.k131}}</span>Google Maps</a>
+<a href="https://maps.app.goo.gl/cM1MFk8636wSnCyW9" target="_blank" rel="noopener"><span>{{t.k118}}</span>Google Maps</a>
 <div><span>Facebook and TikTok</span>phetsiam.muaythai</div>
 </div>
 <a class="btn btn-dark loc-cta" href="#book" style="align-self:flex-start">{{t.k6}}</a>
@@ -877,7 +883,7 @@ a{color:inherit}a:hover{color:inherit}
 </footer>
 
 <div class="mbar">
-<div class="mb-t"><b>550 THB</b><span>{{t.k136}}</span></div>
+<div class="mb-t"><b>550 THB</b><span>{{t.k123}}</span></div>
 <a class="btn btn-ghost ic" href="#book" onClick="{{openWa}}" aria-label="Book via LINE"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.6 7.5 7.1.4.1.6.4.5.8l-.3 1.6c-.1.5.4.8.8.6 2.9-1.6 9.5-5.7 9.5-10.1 0-4-4-7.2-9-7.2z"/></svg></a>
 <a class="btn btn-red" href="#book">{{t.k6}}</a>
 </div>
@@ -916,7 +922,7 @@ var s = Object.assign({ calOpen: false, calMonth: 0, sp: 'sched', lang: 'en', sc
 var set = function (o) { self.setState(o); };
 var L = s.lang === 'th';
 var tr = function (en, th) { return L ? th : en; };
-var T = {"k0": ["Numsurin", "หนุ่มสุรินทร์"], "k1": ["Training", "คลาสฝึก"], "k2": ["Schedule and prices", "ตารางและราคา"], "k3": ["Trainers", "ครูมวย"], "k4": ["The gym", "ยิมของเรา"], "k5": ["Find us", "แผนที่"], "k6": ["Book a session", "จองคลาส"], "k7": ["Book via LINE", "จองผ่าน LINE"], "k8": ["Real Muay Thai.", "มวยไทยแท้"], "k9": ["For everyone.", "สำหรับทุกคน"], "k10": ["A real fight gym in Bangkok. Thai fighters, first-timers and families train side by side, all under one roof.", "ยิมมวยไทยของจริงในกรุงเทพฯ นักมวยไทย มือใหม่ และครอบครัว ฝึกด้วยกันภายใต้หลังคาเดียวกัน"], "k11": ["Trial class, 75 min", "คลาสทดลอง 75 นาที"], "k12": ["First class, every day", "คลาสแรกของทุกวัน"], "k13": ["All levels", "ทุกระดับ"], "k14": ["Beginners welcome", "ยินดีต้อนรับมือใหม่"], "k15": ["Train with ONE Championship experience", "ฝึกกับประสบการณ์ระดับ ONE Championship"], "k16": ["Train where a ONE Championship contender trains.", "ฝึกในยิมเดียวกับนักมวยระดับ ONE Championship"], "k17": ["At Phetsiam", "ที่เพชรสยาม"], "k18": ["World title fight", "ชิงแชมป์โลก"], "k19": ["Also", "นอกจากนี้"], "k20": ["Co-founder and head coach", "ผู้ร่วมก่อตั้งและหัวหน้าโค้ช"], "k21": ["Contracted athlete, atomweight Muay Thai contender", "นักกีฬาในสังกัด ONE มวยไทยรุ่นอะตอมเวต"], "k22": ["Challenged for the inaugural ONE Atomweight Muay Thai World Title, November 2025", "ผู้ท้าชิงแชมป์โลกมวยไทยรุ่นอะตอมเวตของ ONE ครั้งแรก พฤศจิกายน 2025"], "k23": ["Muay Thai instructor at Bangkok Sports School. Specialist in Muay Thai and Western boxing.", "ครูสอนมวยไทยที่โรงเรียนกีฬากรุงเทพมหานคร เชี่ยวชาญมวยไทยและมวยสากล"], "k24": ["Train with Numsurin", "ฝึกกับหนุ่มสุรินทร์"], "k25": ["Private training from 3,000 THB, based on your level and goals. Also seminars, workshops and training camps.", "เทรนส่วนตัวเริ่มต้น 3,000 บาท ตามระดับและเป้าหมายของคุณ มีสัมมนา เวิร์กช็อป และแคมป์ฝึกด้วย"], "k26": ["New home since 30 June 2026", "บ้านใหม่ตั้งแต่ 30 มิถุนายน 2026"], "k27": ["Real gym.", "ยิมจริง"], "k28": ["Real people.", "คนจริง"], "k29": ["Phetsiam is a big, bright steel hall on Sathu Pradit 58 with a full-size ring in the middle. Fighters prepare for fight night here. Complete beginners throw their first kick here. Same mats, same coaches, same respect.", "เพชรสยามคือโรงยิมโครงเหล็กขนาดใหญ่ โปร่ง สว่าง ที่สาธุประดิษฐ์ 58 มีเวทีมวยขนาดมาตรฐานอยู่ตรงกลาง นักมวยเตรียมตัวขึ้นชกที่นี่ มือใหม่เตะครั้งแรกที่นี่ เบาะเดียวกัน ครูคนเดียวกัน ความเคารพเท่ากัน"], "k30": ["No ego and no shortcuts. We train for discipline, confidence and progress, and we call this place home.", "ไม่มีอีโก้ ไม่มีทางลัด เราฝึกเพื่อวินัย ความมั่นใจ และการพัฒนา และเราเรียกที่นี่ว่าบ้าน"], "k31": ["Training options", "รูปแบบการฝึก"], "k32": ["Real training. Your level.", "ฝึกจริง ในระดับของคุณ"], "k33": ["Group classes", "คลาสกลุ่ม"], "k34": ["Advanced", "ขั้นสูง"], "k35": ["Private training", "เทรนส่วนตัว"], "k36": ["70% sparring", "สปาร์ริ่ง 70%"], "k37": ["Open gym", "โอเพ่นยิม"], "k38": ["Special classes", "คลาสพิเศษ"], "k39": ["03 / 1-on-1 or duo", "03 / ตัวต่อตัวหรือคู่"], "k40": ["04 / Fighters", "04 / นักมวย"], "k41": ["05 / On your own", "05 / ฝึกเอง"], "k42": ["06 / Weekends", "06 / สุดสัปดาห์"], "k43": ["Muay Thai All Levels. From complete beginner up, six classes every weekday and four on weekend days.", "มวยไทยทุกระดับ ตั้งแต่มือใหม่ขึ้นไป วันธรรมดา 6 คลาส เสาร์อาทิตย์วันละ 4 คลาส"], "k44": ["For experienced practitioners and fighters. Technique sparring, clinch, bags and pads, and the Muay Femur Lab.", "สำหรับผู้มีประสบการณ์และนักมวย สปาร์ริ่งเทคนิค คลินช์ กระสอบและเป้า และ Muay Femur Lab"], "k45": ["Technique, padwork and sparring, strength and conditioning, fight preparation, weight management. A programme built around you.", "เทคนิค ล่อเป้าและสปาร์ริ่ง เสริมความแข็งแรง เตรียมขึ้นชก ควบคุมน้ำหนัก โปรแกรมที่ออกแบบเพื่อคุณ"], "k46": ["Fight-simulation sparring to build experience, skill and fight IQ.", "สปาร์ริ่งจำลองการชกจริง เพื่อเพิ่มประสบการณ์ ทักษะ และไหวพริบบนเวที"], "k47": ["Heavy bags, pads and ring, strength area, conditioning equipment and a recovery area.", "กระสอบทราย เป้าและเวที โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k48": ["Sparring Club, Athlete Mobility, Ice Bath and Recovery, and Community Time on the open mat.", "Sparring Club คลาสยืดเหยียดสำหรับนักกีฬา แช่น้ำเย็นและฟื้นฟูร่างกาย และ Community Time"], "k49": ["Trial class 550 THB", "คลาสทดลอง 550 บาท"], "k50": ["Daily, 08:00 and 16:00", "ทุกวัน 08:00 และ 16:00"], "k51": ["Trial PT 1,000 THB", "ทดลองเทรนส่วนตัว 1,000 บาท"], "k52": ["From 3,000 THB", "เริ่มต้น 3,000 บาท"], "k53": ["Daily, by appointment", "ทุกวัน นัดหมายล่วงหน้า"], "k54": ["Saturday and Sunday", "เสาร์ - อาทิตย์"], "k55": ["Class schedule", "ตารางคลาส"], "k56": ["Train every day.", "ฝึกได้ทุกวัน"], "k57": ["Monday to Friday", "จันทร์ - ศุกร์"], "k58": ["Muay Thai All Levels, Zone B. The general group class, from beginner to all levels.", "มวยไทยทุกระดับ โซน B คลาสกลุ่มทั่วไป ตั้งแต่มือใหม่ถึงทุกระดับ"], "k59": ["Day", "วัน"], "k60": ["Morning 08:00-09:30", "เช้า 08:00-09:30"], "k61": ["Afternoon 16:00-17:30", "บ่าย 16:00-17:30"], "k62": ["Muay Thai Advanced, Zone A. Technique and fight preparation for experienced practitioners and fighters. Muay Femur Lab: precision striking, footwork, fight IQ and modern combat movement.", "มวยไทยขั้นสูง โซน A เทคนิคและการเตรียมขึ้นชกสำหรับผู้มีประสบการณ์และนักมวย Muay Femur Lab: การออกอาวุธที่แม่นยำ ฟุตเวิร์ก ไหวพริบ และการเคลื่อนไหวแบบมวยสมัยใหม่"], "k63": ["Private sessions", "เทรนส่วนตัว"], "k64": ["Daily, 09:30-16:00 and 17:30-20:30", "ทุกวัน 09:30-16:00 และ 17:30-20:30"], "k65": ["Both by appointment. Book private sessions 24 hours ahead.", "ต้องนัดหมายล่วงหน้า เทรนส่วนตัวกรุณาจองล่วงหน้า 24 ชั่วโมง"], "k66": ["Saturday 18:00-19:00", "เสาร์ 18:00-19:00"], "k67": ["Sunday 09:00-10:00", "อาทิตย์ 09:00-10:00"], "k68": ["Sunday 10:00-11:00", "อาทิตย์ 10:00-11:00"], "k69": ["Saturday and Sunday 18:00-20:00", "เสาร์ - อาทิตย์ 18:00-20:00"], "k70": ["Sparring Club is technical sparring only: no ego, basic skills required. Community Time is open mat, drills and sharing.", "Sparring Club คือสปาร์ริ่งเชิงเทคนิคเท่านั้น ไม่มีอีโก้ ต้องมีพื้นฐาน Community Time คือเวลาซ้อมอิสระ ฝึกท่า และแลกเปลี่ยนกัน"], "k71": ["Prices in THB", "ราคา (บาท)"], "k72": ["Pick your pace.", "เลือกจังหวะของคุณ"], "k73": ["Before you train: our house rules", "ก่อนเริ่มฝึกกับเรา"], "k74": ["Private sessions: book at least 24 hours ahead, subject to coach availability.", "การจองคลาส: คลาส Private กรุณาจองล่วงหน้าอย่างน้อย 24 ชั่วโมง (ขึ้นอยู่กับตารางครูผู้สอน)"], "k75": ["Reschedule with at least 24 hours' notice. Late cancellations and no-shows count as a session.", "การเลื่อนหรือยกเลิก: แจ้งล่วงหน้าอย่างน้อย 24 ชั่วโมง หากแจ้งช้ากว่านี้หรือไม่มาตามนัด จะนับเป็น 1 Session"], "k76": ["Every course includes one emergency cancellation without losing a session.", "สิทธิ์ยกเลิกฉุกเฉิน: ทุกคอร์สยกเลิกหรือเลื่อนคลาสฉุกเฉินได้ 1 ครั้ง โดยไม่ถูกตัดสิทธิ์"], "k77": ["A course can be frozen once, for up to a third of its validity.", "พักคอร์สชั่วคราว: ขอพักคอร์สได้ 1 ครั้งต่อคอร์ส พักได้ไม่เกิน 1 ใน 3 ของอายุคอร์ส"], "k78": ["Late arrivals can always join, but the session ends at the original time.", "กรณีมาสาย: ยังเข้าเรียนได้ แต่คลาสจะสิ้นสุดตามเวลาที่จองไว้"], "k79": ["Validity extensions are possible in special circumstances. Just talk to us.", "อายุคอร์ส: หากมีเหตุจำเป็น ทีมงานยินดีพิจารณาเป็นรายกรณี"], "k80": ["The trainers, led by head coach Numsurin", "ทีมครูมวย นำโดยหัวหน้าโค้ชหนุ่มสุรินทร์"], "k81": ["Real experience. Real Muay Thai.", "ประสบการณ์จริง มวยไทยแท้"], "k82": ["The aggressive knee fighter.", "มวยเข่าสายบุก"], "k83": ["Experienced. Powerful. Ring smart.", "มากประสบการณ์ แข็งแรง อ่านเกมขาด"], "k84": ["The technical fighter. The proud dad.", "มวยฝีมือ พ่อลูกอ่อน"], "k85": ["Technical. Strong. Experienced.", "มวยฝีมือ แข็งแกร่ง มากประสบการณ์"], "k86": ["Good vibes. Sharp technique.", "อารมณ์ดี พลังบวก เทคนิคเฉียบคม"], "k87": ["International coach. Thai heart.", "โค้ชต่างชาติ หัวใจไทย"], "k88": ["Real Muay Thai for everyone.", "มวยไทยแท้สำหรับทุกคน"], "k89": ["All under one roof.", "ทุกอย่างภายใต้หลังคาเดียวกัน"], "k90": ["The place we call home", "ที่ที่เราเรียกว่าบ้าน"], "k91": ["Pad rounds", "ล่อเป้า"], "k92": ["Between rounds", "พักยก"], "k93": ["Light sparring. Real learning.", "สปาร์เบา ๆ เรียนรู้จริง"], "k94": ["Fight night: Krudam Fight 35", "คืนขึ้นชก: Krudam Fight 35"], "k95": ["Full-size ring. Primo gear. Heavy bags, strength area, conditioning equipment and a recovery area.", "เวทีมวยขนาดมาตรฐาน อุปกรณ์ Primo กระสอบทราย โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k96": ["Google reviews", "รีวิวจาก Google"], "k97": ["Read all reviews on Google", "อ่านรีวิวทั้งหมดบน Google"], "k98": ["Open in Google Maps", "เปิดใน Google Maps"], "k99": ["Swipe", "เลื่อนดู"], "k100": ["Numsurin, ONE Championship contender", "หนุ่มสุรินทร์ นักมวย ONE Championship"], "k101": ["Assistant coach", "ผู้ช่วยโค้ช"], "k102": ["Coach is watching.", "โค้ชดูนะ"], "k103": ["Better behave.", "ตั้งใจซ้อมด้วย!!"], "k104": ["Youngest on the team. Strictest too.", "อายุน้อยที่สุดในทีม และเข้มที่สุดด้วย"], "k105": ["Schedule", "ตาราง"], "k106": ["Prices", "ราคา"], "k107": ["Real people. Real words.", "คนจริง เสียงจริง"], "k108": ["Your first round starts here.", "ยกแรกของคุณเริ่มที่นี่"], "k109": ["Pick a training, a day and a time. We will confirm your spot. New to Muay Thai? Start with a trial class.", "เลือกรูปแบบการฝึก วัน และเวลา แล้วเราจะยืนยันที่ให้คุณ เพิ่งเริ่มมวยไทย? เริ่มจากคลาสทดลองได้เลย"], "k110": ["Choose a day first to see the class times.", "เลือกวันก่อนเพื่อดูเวลาคลาส"], "k111": ["Back", "ย้อนกลับ"], "k112": ["Name", "ชื่อ"], "k113": ["Phone number or LINE ID", "เบอร์โทรหรือ LINE ID"], "k114": ["Email (optional)", "อีเมล (ไม่บังคับ)"], "k115": ["Anything we should know? (optional)", "มีอะไรอยากบอกเราไหม (ไม่บังคับ)"], "k116": ["Demo: nothing is sent or stored, and no payment is taken.", "เดโม: ไม่มีการส่งหรือบันทึกข้อมูล และไม่มีการชำระเงิน"], "k117": ["Your request is in. We will confirm your spot by phone or message. Bring water and a smile; we have the rest.", "เราได้รับคำขอของคุณแล้ว และจะยืนยันที่ให้ทางโทรศัพท์หรือข้อความ เตรียมน้ำดื่มกับรอยยิ้มมาก็พอ ที่เหลือเรามีให้"], "k118": ["Book another session", "จองอีกครั้ง"], "k119": ["How to find us", "ดูเส้นทาง"], "k120": ["This is a demo confirmation. Nothing was sent or stored.", "นี่คือหน้ายืนยันตัวอย่าง ไม่มีการส่งหรือบันทึกข้อมูล"], "k121": ["Send us this message on LINE and we will confirm your spot:", "ส่งข้อความนี้ทาง LINE แล้วเราจะยืนยันที่ให้คุณ"], "k122": ["Open LINE", "เปิด LINE"], "k123": ["Time", "เวลา"], "k124": ["People", "จำนวนคน"], "k125": ["Morning", "เช้า"], "k126": ["Afternoon", "บ่าย"], "k127": ["Evening", "เย็น"], "k128": ["Calendar", "ปฏิทิน"], "k129": ["Prefer to chat?", "อยากแชตมากกว่า?"], "k130": ["Add a note", "เพิ่มโน้ต"], "k131": ["Directions", "เส้นทาง"], "k132": ["Location and contact", "ที่ตั้งและติดต่อ"], "k133": ["Find us on Sathu Pradit 58.", "เราอยู่ที่สาธุประดิษฐ์ 58"], "k134": ["First class daily at 07:00. Private sessions and open gym by appointment, 09:30-16:00 and 17:30-20:30.", "คลาสแรกทุกวัน 07:00 เทรนส่วนตัวและโอเพ่นยิมต้องนัดหมาย 09:30-16:00 และ 17:30-20:30"], "k135": ["Phone", "โทร"], "k136": ["Trial class", "คลาสทดลอง"]};
+var T = {"k0": ["Numsurin", "หนุ่มสุรินทร์"], "k1": ["Training", "คลาสฝึก"], "k2": ["Schedule and prices", "ตารางและราคา"], "k3": ["Trainers", "ครูมวย"], "k4": ["The gym", "ยิมของเรา"], "k5": ["Find us", "แผนที่"], "k6": ["Book a session", "จองคลาส"], "k7": ["Book via LINE", "จองผ่าน LINE"], "k8": ["Real Muay Thai.", "มวยไทยแท้"], "k9": ["For everyone.", "สำหรับทุกคน"], "k10": ["A real fight gym in Bangkok. Thai fighters, first-timers and families train side by side, all under one roof.", "ยิมมวยไทยของจริงในกรุงเทพฯ นักมวยไทย มือใหม่ และครอบครัว ฝึกด้วยกันภายใต้หลังคาเดียวกัน"], "k11": ["Trial class, 75 min", "คลาสทดลอง 75 นาที"], "k12": ["First class, every day", "คลาสแรกของทุกวัน"], "k13": ["All levels", "ทุกระดับ"], "k14": ["Beginners welcome", "ยินดีต้อนรับมือใหม่"], "k15": ["Train with ONE Championship experience", "ฝึกกับประสบการณ์ระดับ ONE Championship"], "k16": ["Train where a ONE Championship contender trains.", "ฝึกในยิมเดียวกับนักมวยระดับ ONE Championship"], "k17": ["At Phetsiam", "ที่เพชรสยาม"], "k18": ["World title fight", "ชิงแชมป์โลก"], "k19": ["Also", "นอกจากนี้"], "k20": ["Co-founder and head coach", "ผู้ร่วมก่อตั้งและหัวหน้าโค้ช"], "k21": ["Contracted athlete, atomweight Muay Thai contender", "นักกีฬาในสังกัด ONE มวยไทยรุ่นอะตอมเวต"], "k22": ["Challenged for the inaugural ONE Atomweight Muay Thai World Title, November 2025", "ผู้ท้าชิงแชมป์โลกมวยไทยรุ่นอะตอมเวตของ ONE ครั้งแรก พฤศจิกายน 2025"], "k23": ["Muay Thai instructor at Bangkok Sports School. Specialist in Muay Thai and Western boxing.", "ครูสอนมวยไทยที่โรงเรียนกีฬากรุงเทพมหานคร เชี่ยวชาญมวยไทยและมวยสากล"], "k24": ["Train with Numsurin", "ฝึกกับหนุ่มสุรินทร์"], "k25": ["Private training from 3,000 THB, based on your level and goals. Also seminars, workshops and training camps.", "เทรนส่วนตัวเริ่มต้น 3,000 บาท ตามระดับและเป้าหมายของคุณ มีสัมมนา เวิร์กช็อป และแคมป์ฝึกด้วย"], "k26": ["New home since 30 June 2026", "บ้านใหม่ตั้งแต่ 30 มิถุนายน 2026"], "k27": ["Real gym.", "ยิมจริง"], "k28": ["Real people.", "คนจริง"], "k29": ["Phetsiam is a big, bright steel hall on Sathu Pradit 58 with a full-size ring in the middle. Fighters prepare for fight night here. Complete beginners throw their first kick here. Same mats, same coaches, same respect.", "เพชรสยามคือโรงยิมโครงเหล็กขนาดใหญ่ โปร่ง สว่าง ที่สาธุประดิษฐ์ 58 มีเวทีมวยขนาดมาตรฐานอยู่ตรงกลาง นักมวยเตรียมตัวขึ้นชกที่นี่ มือใหม่เตะครั้งแรกที่นี่ เบาะเดียวกัน ครูคนเดียวกัน ความเคารพเท่ากัน"], "k30": ["No ego and no shortcuts. We train for discipline, confidence and progress, and we call this place home.", "ไม่มีอีโก้ ไม่มีทางลัด เราฝึกเพื่อวินัย ความมั่นใจ และการพัฒนา และเราเรียกที่นี่ว่าบ้าน"], "k31": ["Training options", "รูปแบบการฝึก"], "k32": ["Real training. Your level.", "ฝึกจริง ในระดับของคุณ"], "k33": ["Group classes", "คลาสกลุ่ม"], "k34": ["Advanced", "ขั้นสูง"], "k35": ["Private training", "เทรนส่วนตัว"], "k36": ["70% sparring", "สปาร์ริ่ง 70%"], "k37": ["Open gym", "โอเพ่นยิม"], "k38": ["Special classes", "คลาสพิเศษ"], "k39": ["03 / 1-on-1 or duo", "03 / ตัวต่อตัวหรือคู่"], "k40": ["04 / Fighters", "04 / นักมวย"], "k41": ["05 / On your own", "05 / ฝึกเอง"], "k42": ["06 / Weekends", "06 / สุดสัปดาห์"], "k43": ["Muay Thai All Levels. From complete beginner up, six classes every weekday and four on weekend days.", "มวยไทยทุกระดับ ตั้งแต่มือใหม่ขึ้นไป วันธรรมดา 6 คลาส เสาร์อาทิตย์วันละ 4 คลาส"], "k44": ["For experienced practitioners and fighters. Technique sparring, clinch, bags and pads, and the Muay Femur Lab.", "สำหรับผู้มีประสบการณ์และนักมวย สปาร์ริ่งเทคนิค คลินช์ กระสอบและเป้า และ Muay Femur Lab"], "k45": ["Technique, padwork and sparring, strength and conditioning, fight preparation, weight management. A programme built around you.", "เทคนิค ล่อเป้าและสปาร์ริ่ง เสริมความแข็งแรง เตรียมขึ้นชก ควบคุมน้ำหนัก โปรแกรมที่ออกแบบเพื่อคุณ"], "k46": ["Fight-simulation sparring to build experience, skill and fight IQ.", "สปาร์ริ่งจำลองการชกจริง เพื่อเพิ่มประสบการณ์ ทักษะ และไหวพริบบนเวที"], "k47": ["Heavy bags, pads and ring, strength area, conditioning equipment and a recovery area.", "กระสอบทราย เป้าและเวที โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k48": ["Sparring Club, Athlete Mobility, Ice Bath and Recovery, and Community Time on the open mat.", "Sparring Club คลาสยืดเหยียดสำหรับนักกีฬา แช่น้ำเย็นและฟื้นฟูร่างกาย และ Community Time"], "k49": ["Trial class 550 THB", "คลาสทดลอง 550 บาท"], "k50": ["Daily, 08:00 and 16:00", "ทุกวัน 08:00 และ 16:00"], "k51": ["Trial PT 1,000 THB", "ทดลองเทรนส่วนตัว 1,000 บาท"], "k52": ["From 3,000 THB", "เริ่มต้น 3,000 บาท"], "k53": ["Daily, by appointment", "ทุกวัน นัดหมายล่วงหน้า"], "k54": ["Saturday and Sunday", "เสาร์ - อาทิตย์"], "k55": ["Class schedule", "ตารางคลาส"], "k56": ["Train every day.", "ฝึกได้ทุกวัน"], "k57": ["Day", "วัน"], "k58": ["Prices in THB", "ราคา (บาท)"], "k59": ["Pick your pace.", "เลือกจังหวะของคุณ"], "k60": ["Before you train: our house rules", "ก่อนเริ่มฝึกกับเรา"], "k61": ["Private sessions: book at least 24 hours ahead, subject to coach availability.", "การจองคลาส: คลาส Private กรุณาจองล่วงหน้าอย่างน้อย 24 ชั่วโมง (ขึ้นอยู่กับตารางครูผู้สอน)"], "k62": ["Reschedule with at least 24 hours' notice. Late cancellations and no-shows count as a session.", "การเลื่อนหรือยกเลิก: แจ้งล่วงหน้าอย่างน้อย 24 ชั่วโมง หากแจ้งช้ากว่านี้หรือไม่มาตามนัด จะนับเป็น 1 Session"], "k63": ["Every course includes one emergency cancellation without losing a session.", "สิทธิ์ยกเลิกฉุกเฉิน: ทุกคอร์สยกเลิกหรือเลื่อนคลาสฉุกเฉินได้ 1 ครั้ง โดยไม่ถูกตัดสิทธิ์"], "k64": ["A course can be frozen once, for up to a third of its validity.", "พักคอร์สชั่วคราว: ขอพักคอร์สได้ 1 ครั้งต่อคอร์ส พักได้ไม่เกิน 1 ใน 3 ของอายุคอร์ส"], "k65": ["Late arrivals can always join, but the session ends at the original time.", "กรณีมาสาย: ยังเข้าเรียนได้ แต่คลาสจะสิ้นสุดตามเวลาที่จองไว้"], "k66": ["Validity extensions are possible in special circumstances. Just talk to us.", "อายุคอร์ส: หากมีเหตุจำเป็น ทีมงานยินดีพิจารณาเป็นรายกรณี"], "k67": ["The trainers, led by head coach Numsurin", "ทีมครูมวย นำโดยหัวหน้าโค้ชหนุ่มสุรินทร์"], "k68": ["Real experience. Real Muay Thai.", "ประสบการณ์จริง มวยไทยแท้"], "k69": ["The aggressive knee fighter.", "มวยเข่าสายบุก"], "k70": ["Experienced. Powerful. Ring smart.", "มากประสบการณ์ แข็งแรง อ่านเกมขาด"], "k71": ["The technical fighter. The proud dad.", "มวยฝีมือ พ่อลูกอ่อน"], "k72": ["Technical. Strong. Experienced.", "มวยฝีมือ แข็งแกร่ง มากประสบการณ์"], "k73": ["Good vibes. Sharp technique.", "อารมณ์ดี พลังบวก เทคนิคเฉียบคม"], "k74": ["International coach. Thai heart.", "โค้ชต่างชาติ หัวใจไทย"], "k75": ["Real Muay Thai for everyone.", "มวยไทยแท้สำหรับทุกคน"], "k76": ["All under one roof.", "ทุกอย่างภายใต้หลังคาเดียวกัน"], "k77": ["The place we call home", "ที่ที่เราเรียกว่าบ้าน"], "k78": ["Pad rounds", "ล่อเป้า"], "k79": ["Between rounds", "พักยก"], "k80": ["Light sparring. Real learning.", "สปาร์เบา ๆ เรียนรู้จริง"], "k81": ["Fight night: Krudam Fight 35", "คืนขึ้นชก: Krudam Fight 35"], "k82": ["Full-size ring. Primo gear. Heavy bags, strength area, conditioning equipment and a recovery area.", "เวทีมวยขนาดมาตรฐาน อุปกรณ์ Primo กระสอบทราย โซนเวท อุปกรณ์ฟิตเนส และโซนฟื้นฟูร่างกาย"], "k83": ["Google reviews", "รีวิวจาก Google"], "k84": ["Read all reviews on Google", "อ่านรีวิวทั้งหมดบน Google"], "k85": ["Open in Google Maps", "เปิดใน Google Maps"], "k86": ["Swipe", "เลื่อนดู"], "k87": ["Numsurin, ONE Championship contender", "หนุ่มสุรินทร์ นักมวย ONE Championship"], "k88": ["Assistant coach", "ผู้ช่วยโค้ช"], "k89": ["Coach is watching.", "โค้ชดูนะ"], "k90": ["Better behave.", "ตั้งใจซ้อมด้วย!!"], "k91": ["Youngest on the team. Strictest too.", "อายุน้อยที่สุดในทีม และเข้มที่สุดด้วย"], "k92": ["Schedule", "ตาราง"], "k93": ["Prices", "ราคา"], "k94": ["Real people. Real words.", "คนจริง เสียงจริง"], "k95": ["Your first round starts here.", "ยกแรกของคุณเริ่มที่นี่"], "k96": ["Pick a training, a day and a time. We will confirm your spot. New to Muay Thai? Start with a trial class.", "เลือกรูปแบบการฝึก วัน และเวลา แล้วเราจะยืนยันที่ให้คุณ เพิ่งเริ่มมวยไทย? เริ่มจากคลาสทดลองได้เลย"], "k97": ["Choose a day first to see the class times.", "เลือกวันก่อนเพื่อดูเวลาคลาส"], "k98": ["Back", "ย้อนกลับ"], "k99": ["Name", "ชื่อ"], "k100": ["Phone number or LINE ID", "เบอร์โทรหรือ LINE ID"], "k101": ["Email (optional)", "อีเมล (ไม่บังคับ)"], "k102": ["Anything we should know? (optional)", "มีอะไรอยากบอกเราไหม (ไม่บังคับ)"], "k103": ["Demo: nothing is sent or stored, and no payment is taken.", "เดโม: ไม่มีการส่งหรือบันทึกข้อมูล และไม่มีการชำระเงิน"], "k104": ["Your request is in. We will confirm your spot by phone or message. Bring water and a smile; we have the rest.", "เราได้รับคำขอของคุณแล้ว และจะยืนยันที่ให้ทางโทรศัพท์หรือข้อความ เตรียมน้ำดื่มกับรอยยิ้มมาก็พอ ที่เหลือเรามีให้"], "k105": ["Book another session", "จองอีกครั้ง"], "k106": ["How to find us", "ดูเส้นทาง"], "k107": ["This is a demo confirmation. Nothing was sent or stored.", "นี่คือหน้ายืนยันตัวอย่าง ไม่มีการส่งหรือบันทึกข้อมูล"], "k108": ["Send us this message on LINE and we will confirm your spot:", "ส่งข้อความนี้ทาง LINE แล้วเราจะยืนยันที่ให้คุณ"], "k109": ["Open LINE", "เปิด LINE"], "k110": ["Time", "เวลา"], "k111": ["People", "จำนวนคน"], "k112": ["Morning", "เช้า"], "k113": ["Afternoon", "บ่าย"], "k114": ["Evening", "เย็น"], "k115": ["Calendar", "ปฏิทิน"], "k116": ["Prefer to chat?", "อยากแชตมากกว่า?"], "k117": ["Add a note", "เพิ่มโน้ต"], "k118": ["Directions", "เส้นทาง"], "k119": ["Location and contact", "ที่ตั้งและติดต่อ"], "k120": ["Find us on Sathu Pradit 58.", "เราอยู่ที่สาธุประดิษฐ์ 58"], "k121": ["First class daily at 07:00. Private sessions and open gym by appointment, 09:30-16:00 and 17:30-20:30.", "คลาสแรกทุกวัน 07:00 เทรนส่วนตัวและโอเพ่นยิมต้องนัดหมาย 09:30-16:00 และ 17:30-20:30"], "k122": ["Phone", "โทร"], "k123": ["Trial class", "คลาสทดลอง"]};
 var t = {};
 Object.keys(T).forEach(function (k) { t[k] = T[k][L ? 1 : 0]; });
 
@@ -924,7 +930,7 @@ var schedTabs = [['all', tr('All levels', 'ทุกระดับ')], ['adv', 
 return { label: x[1], cls: s.sched === x[0] ? 'on' : '', pick: function () { set({ sched: x[0] }); } };
 });
 var priceTabs = [['group', tr('Group classes', 'คลาสกลุ่ม')], ['unl', tr('Unlimited', 'ไม่จำกัดครั้ง')], ['priv', tr('Private', 'ส่วนตัว')]].map(function (x) {
-return { label: x[1], cls: s.price === x[0] ? 'on' : '', pick: function () { set({ price: x[0] }); } };
+return { label: x[1], on: s.price === x[0], cls: s.price === x[0] ? 'on' : '', pick: function () { set({ price: x[0] }); } };
 });
 var advRows = [
 { d: 'Mon', m: 'Technique sparring', a: 'Bags and pads + functional training' },
@@ -957,6 +963,24 @@ priv: { note: tr('Book private sessions at least 24 hours ahead, subject to coac
 { n: 'Private with Numsurin', d: 'Based on your level and goals', p: 'From 3,000', tag: '' }] }
 };
 
+var mm = function (v) { var q = v.split(':'); return (+q[0]) * 60 + (+q[1]); };
+var wsel = (s.wday === undefined || s.wday === null) ? new Date().getDay() : s.wday;
+var wtoday = new Date().getDay();
+var WSH = L ? ['อา.', 'จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.'] : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var WFL = L ? ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์'] : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+var week = [1, 2, 3, 4, 5, 6, 0].map(function (d) { var on = d === wsel; return { label: WSH[d], on: on, cls: (on ? 'on' : '') + (d === wtoday ? ' today' : ''), pick: function () { set({ wday: d }); } }; });
+var minL = tr(' min', ' นาที');
+var rowsD = [];
+var wkend = wsel === 0 || wsel === 6;
+(wkend ? ['07:00-08:15', '09:00-10:15', '15:00-16:15', '16:30-17:45'] : ['07:00-08:15', '10:00-11:15', '15:00-16:15', '16:30-17:45', '18:00-19:00', '19:00-20:00']).forEach(function (x) {
+var se = x.split('-'); rowsD.push({ start: se[0], end: se[1], name: 'Muay Thai All Levels', sub: tr('Zone B', 'โซน B') + ' · ' + (mm(se[1]) - mm(se[0])) + minL, lv: '', tag: tr('All levels', 'ทุกระดับ') });
+});
+var ADVD = { 1: ['Technique sparring', 'Bags and pads + functional training'], 2: ['Functional Muay Thai training', 'Sparring + clinch'], 3: ['Muay Femur Lab: boxing drills', 'Muay Femur Lab'], 4: ['Bags and pads + functional training', 'Bags and pads + functional training'], 5: ['Functional Muay Thai training', 'Bags and pads + clinch'], 6: ['Technique sparring', 'Muay Femur Lab'], 0: [null, null] };
+[['08:00', '09:30'], ['16:00', '17:30']].forEach(function (se, i) { var nm = ADVD[wsel][i]; if (nm) rowsD.push({ start: se[0], end: se[1], name: nm, sub: tr('Zone A', 'โซน A') + ' · 90' + minL, lv: 'pro', tag: tr('Advanced', 'ขั้นสูง') }); });
+var SPCD = { 6: [['18:00', '19:00', 'Phetsiam Sparring Club', tr('Technical sparring, basic skills required', 'สปาร์ริ่งเชิงเทคนิค ต้องมีพื้นฐาน')], ['18:00', '20:00', 'Community Time', tr('Open mat, drills, sharing', 'ซ้อมอิสระ ฝึกท่า แลกเปลี่ยนกัน')]], 0: [['09:00', '10:00', 'Athlete Mobility Class', '60' + minL], ['10:00', '11:00', 'Ice Bath and Recovery', '60' + minL], ['18:00', '20:00', 'Community Time', tr('Open mat, drills, sharing', 'ซ้อมอิสระ ฝึกท่า แลกเปลี่ยนกัน')]] };
+(SPCD[wsel] || []).forEach(function (x) { rowsD.push({ start: x[0], end: x[1], name: x[2], sub: x[3], lv: 'spc', tag: tr('Special', 'พิเศษ') }); });
+rowsD.sort(function (a, b2) { return mm(a.start) - mm(b2.start) || mm(a.end) - mm(b2.end); });
+var dayTitle = WFL[wsel] + (wsel === wtoday ? tr(' (today)', ' (วันนี้)') : '') + ' · ' + rowsD.length + tr(' classes', ' คลาส');
 var thb = tr('THB', 'บาท');
 var TYPES = [
 { id: 'group', name: tr('Group class', 'คลาสกลุ่ม'), meta: tr('Muay Thai All Levels. Trial or drop-in.', 'มวยไทยทุกระดับ คลาสทดลองหรือรายครั้ง'), price: '550 ' + thb, unit: tr('per person', 'ต่อคน') },
@@ -1060,6 +1084,7 @@ setEn: function () { set({ lang: 'en' }); },
 setTh: function () { set({ lang: 'th' }); },
 spSched: s.sp === 'sched', spPrice: s.sp === 'price', spSchedCls: s.sp === 'sched' ? 'on' : '', spPriceCls: s.sp === 'price' ? 'on' : '', schedOff: s.sp === 'sched' ? '' : 'off', priceOff: s.sp === 'price' ? '' : 'off',
 showSched: function () { set({ sp: 'sched' }); }, showPrice: function () { set({ sp: 'price' }); },
+week: week, dayRows: rowsD, dayTitle: dayTitle, privTitle: tr('Private sessions and open gym', 'เทรนส่วนตัวและโอเพ่นยิม'), privSub: tr('Daily by appointment, 09:30-16:00 and 17:30-20:30', 'ทุกวัน นัดหมายล่วงหน้า 09:30-16:00 และ 17:30-20:30'),
 rope: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 schedTabs: schedTabs, schedAll: s.sched === 'all', schedAdv: s.sched === 'adv', schedPriv: s.sched === 'priv', schedSpec: s.sched === 'spec', advRows: advRows,
 priceTabs: priceTabs, priceRows: PRICES[s.price].rows, priceNote: PRICES[s.price].note,
